@@ -1,0 +1,12 @@
+/**
+ * First comment for `a`.
+ */
+.a {
+  /** `b` comment */
+  .b {
+  }
+}
+
+/** Second comment for `a`. */
+.a {
+}

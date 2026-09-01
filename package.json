@@ -1,0 +1,51 @@
+{
+  "name": "css-modules-content-mapper",
+  "version": "0.0.0",
+  "description": "TypeScript content mapper for CSS modules",
+  "keywords": [
+    "content-mapper",
+    "css",
+    "css-modules",
+    "typescript"
+  ],
+  "homepage": "https://github.com/remcohaszing/css-modules-content-mapper#readme",
+  "bugs": "https://github.com/remcohaszing/css-modules-content-mapper/issues",
+  "repository": "remcohaszing/css-modules-content-mapper",
+  "funding": "https://github.com/sponsors/remcohaszing",
+  "license": "MIT",
+  "author": "Remco Haszing <remcohaszing@gmail.com>",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "typescript": {
+    "contentMapper": {
+      "exec": [
+        "node",
+        "lib/content-mapper.js"
+      ],
+      "compilerOptions": [],
+      "dynamicConfig": false
+    }
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "postcss": "^8.0.0",
+    "postcss-modules": "^9.0.0",
+    "postcss-safe-parser": "^7.0.0",
+    "postcss-selector-parser": "^7.0.0",
+    "vscode-jsonrpc": "^9.0.0"
+  },
+  "devDependencies": {
+    "@remcohaszing/eslint": "^14.0.0",
+    "@types/node": "^26.0.0",
+    "css-modules-content-mapper": "file:.",
+    "prettier": "^3.0.0",
+    "remark-cli": "^12.0.0",
+    "remark-preset-remcohaszing": "^3.0.0",
+    "snapshot-fixtures": "^1.0.0",
+    "typescript": "^6.0.0"
+  }
+}

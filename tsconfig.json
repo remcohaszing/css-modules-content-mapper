@@ -1,0 +1,12 @@
+{
+  "exclude": ["fixtures"],
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "nodenext",
+    "noEmit": true,
+    "target": "esnext",
+    "lib": ["esnext"],
+    "types": ["node"],
+    "verbatimModuleSyntax": true
+  }
+}

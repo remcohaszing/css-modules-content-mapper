@@ -1,0 +1,36 @@
+#id {
+  font-weight: bold;
+}
+
+/** 
+ * asd
+ */
+.cls {
+  color: #ff0000;
+  /*asd*/
+
+  &.nested {
+    background: green;
+  }
+  /*asd*/
+}
+
+/**
+ * second comment!
+ */
+.cls {
+  background: green;
+}
+
+.hyphenated-class-name {
+  border: 1px solid blue;
+}
+
+.hyphenated-class-name {
+  background: yellow;
+}
+
+.🐈:after,
+.🦉:after {
+  content: 'emoji';
+}
