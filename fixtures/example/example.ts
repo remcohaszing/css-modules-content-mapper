@@ -1,4 +1,4 @@
-import styles, { '🐈' as cat, id, cls, nested, '🦉' as owl } from './example.module.css'
+import styles, { '🐈' as cat, id, cls, nested, '🦉' as owl } from './input.module.css'
 
 cat
 
