@@ -81,8 +81,8 @@ This projects works with TypeScript 7.1 or greater and requires Node.js 22 or gr
 
 ## Security
 
-By passing using content mappers, you are breaking TypeScript’s trust boundary that `tsc` wouldn’t
-run third party code.
+Normally, `tsc` is a self-contained binary that doesn’t execute third party code. By using content
+mappers, you are deliberately breaking this trust boundary.
 
 ## License
 
