@@ -17,7 +17,7 @@ declare const styles: {
  * }
  * ```
  */
-readonly "a": string
+readonly a: string
 
 /**
  * `b` comment
@@ -26,7 +26,7 @@ readonly "a": string
  *   }
  * ```
  */
-readonly "b": string
+readonly b: string
 }
 
 export = styles
@@ -35,5 +35,5 @@ export = styles
 
 ## Mappings
 
-- `a` → `"a"`
-- `b` → `"b"`
+- `a` → `a`
+- `b` → `b`

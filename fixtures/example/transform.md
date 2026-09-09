@@ -9,7 +9,7 @@ declare const styles: {
  * }
  * ```
  */
-readonly "id": string
+readonly id: string
 
 /**
  * 
@@ -31,7 +31,7 @@ readonly "id": string
  * }
  * ```
  */
-readonly "cls": string
+readonly cls: string
 
 /**
  * ```css
@@ -40,7 +40,7 @@ readonly "cls": string
  *   }
  * ```
  */
-readonly "nested": string
+readonly nested: string
 
 /**
  * ```css
@@ -83,9 +83,9 @@ export = styles
 
 ## Mappings
 
-- `id` → `"id"`
-- `cls` → `"cls"`
-- `nested` → `"nested"`
+- `id` → `id`
+- `cls` → `cls`
+- `nested` → `nested`
 - `hyphenated-class-name` → `"hyphenated-class-name"`
 - `🐈` → `"🐈"`
 - `🦉` → `"🦉"`

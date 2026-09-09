@@ -9,7 +9,7 @@ declare const styles: {
  * }
  * ```
  */
-readonly "red": string
+readonly red: string
 }
 
 export = styles
@@ -18,4 +18,4 @@ export = styles
 
 ## Mappings
 
-- `red` → `"red"`
+- `red` → `red`

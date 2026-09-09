@@ -18,7 +18,7 @@ readonly "hyphenated-class": string
  * }
  * ```
  */
-readonly "hyphenatedClass": string
+readonly hyphenatedClass: string
 }
 
 export = styles
@@ -28,4 +28,4 @@ export = styles
 ## Mappings
 
 - `hyphenated-class` → `"hyphenated-class"`
-- `hyphenated-class` → `"hyphenatedClass"`
+- `hyphenated-class` → `hyphenatedClass`
