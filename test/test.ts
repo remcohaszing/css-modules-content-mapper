@@ -38,7 +38,7 @@ testFixturesDirectory({
       const contentMapper = (raw.contentMappers as any[]).find((cm) => cm.package === pkg.name)
 
       const [command, ...args] = pkg.typescript.contentMapper.exec
-      using proc = spawn(command, args)
+      using proc = spawn(command, args, { stdio: ['pipe', 'pipe', 'inherit'] })
       const connection = createMessageConnection(
         new StreamMessageReader(proc.stdout),
         new StreamMessageWriter(proc.stdin)
