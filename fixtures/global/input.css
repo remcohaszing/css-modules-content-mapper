@@ -1,0 +1,21 @@
+.a :global(.b) .c {
+}
+
+.d :global .e :local .f {
+}
+
+:global(.g) :not(.h) {
+}
+
+:global .i :not(.j) {
+}
+
+:global(#k) {
+}
+
+:global .l,
+.m {
+}
+
+:global .n :local(.o) {
+}
