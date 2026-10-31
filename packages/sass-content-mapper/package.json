@@ -1,0 +1,66 @@
+{
+  "name": "sass-content-mapper",
+  "version": "0.0.0",
+  "description": "TypeScript content mapper for Sass CSS modules",
+  "keywords": [
+    "content-mapper",
+    "css-modules",
+    "sass",
+    "scss",
+    "typescript"
+  ],
+  "homepage": "https://github.com/remcohaszing/css-modules-content-mapper/tree/main/packages/sass-content-mapper#readme",
+  "bugs": "https://github.com/remcohaszing/css-modules-content-mapper/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remcohaszing/css-modules-content-mapper.git",
+    "directory": "packages/sass-content-mapper"
+  },
+  "funding": "https://github.com/sponsors/remcohaszing",
+  "license": "MIT",
+  "author": "Remco Haszing <remcohaszing@gmail.com>",
+  "contributors": [
+    "Brody McKee (https://github.com/mrmckeb)"
+  ],
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "typescript": {
+    "contentMapper": {
+      "exec": [
+        "node",
+        "lib/content-mapper.js"
+      ],
+      "compilerOptions": [],
+      "dynamicConfig": false
+    }
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "css-modules-content-mapper": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "content-mapper-test-utils": "^0.0.1",
+    "sass": "1.71.1",
+    "sass-embedded": "1.71.1",
+    "snapshot-fixtures": "^1.0.0",
+    "typescript": "^6.0.0",
+    "vscode-jsonrpc": "^10.0.0"
+  },
+  "peerDependencies": {
+    "sass": "^1.71.1",
+    "sass-embedded": "^1.71.1"
+  },
+  "peerDependenciesMeta": {
+    "sass": {
+      "optional": true
+    },
+    "sass-embedded": {
+      "optional": true
+    }
+  }
+}

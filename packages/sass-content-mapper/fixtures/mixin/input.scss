@@ -1,0 +1,10 @@
+@use 'mixins';
+
+.local {
+  @include mixins.red;
+}
+
+// `child` is defined in another file, so it has no definition.
+.parent {
+  @include mixins.child;
+}

@@ -1,0 +1,5 @@
+a[href^='https://example.com'] .parent {
+  .child {
+    color: red;
+  }
+}

@@ -18,6 +18,9 @@
   "funding": "https://github.com/sponsors/remcohaszing",
   "license": "MIT",
   "author": "Remco Haszing <remcohaszing@gmail.com>",
+  "contributors": [
+    "Brody McKee (https://github.com/mrmckeb)"
+  ],
   "type": "module",
   "files": [
     "lib",
@@ -38,7 +41,8 @@
     }
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "prepack": "tsc --build"
   },
   "dependencies": {
     "estree-util-is-identifier-name": "^3.0.0",

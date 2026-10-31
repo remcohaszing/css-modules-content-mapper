@@ -1,0 +1,9 @@
+@mixin red {
+  color: #ff0000;
+}
+
+@mixin child {
+  .child {
+    color: green;
+  }
+}

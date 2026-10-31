@@ -73,8 +73,10 @@ while you are typing.
 ## CSS syntax
 
 This project does **not** check CSS validity. You can use a linter, such as
-[Stylelint](https://stylelint.io), for that. This project also doesn’t support CSS variants such as
-[Sass](https://sass-lang.com) or [Less](https://lesscss.org).
+[Stylelint](https://stylelint.io), for that. This project also doesn’t support CSS variants. For
+[Sass](https://sass-lang.com), use
+[`sass-content-mapper`](https://github.com/remcohaszing/css-modules-content-mapper/tree/main/packages/sass-content-mapper).
+Support for [Less](https://lesscss.org) is coming soon.
 
 ## Compatibility
 
@@ -87,4 +89,5 @@ mappers, you are deliberately breaking this trust boundary.
 
 ## License
 
-[MIT](LICENSE.md) © [Remco Haszing](https://github.com/remcohaszing)
+[MIT](LICENSE.md) © [Remco Haszing](https://github.com/remcohaszing),
+[Brody McKee](https://github.com/mrmckeb)

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "noEmit": true,
+    "verbatimModuleSyntax": true
+  },
+  "contentMappers": [
+    {
+      "package": "sass-content-mapper",
+      "extensions": [".scss", ".sass"],
+      "options": {
+        "loadPaths": ["vendor"]
+      }
+    }
+  ]
+}

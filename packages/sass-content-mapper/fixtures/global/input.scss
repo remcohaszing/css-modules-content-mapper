@@ -1,0 +1,17 @@
+:global(.a) {
+  .b {
+    color: #ff0000;
+  }
+}
+
+:global .c {
+  .d {
+    color: #ff0000;
+  }
+}
+
+:local(.e) {
+  .f {
+    color: #ff0000;
+  }
+}

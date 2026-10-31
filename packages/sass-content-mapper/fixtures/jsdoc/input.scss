@@ -1,0 +1,11 @@
+/**
+ * Comment for `a`.
+ */
+.a {
+  color: #ff0000;
+
+  /** `b` comment */
+  .b {
+    color: green;
+  }
+}

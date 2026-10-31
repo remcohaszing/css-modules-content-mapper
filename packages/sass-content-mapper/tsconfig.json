@@ -1,0 +1,13 @@
+{
+  "exclude": ["fixtures"],
+  "references": [{ "path": "../css-modules-content-mapper/tsconfig.build.json" }],
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "nodenext",
+    "noEmit": true,
+    "target": "esnext",
+    "lib": ["esnext"],
+    "types": ["node"],
+    "verbatimModuleSyntax": true
+  }
+}

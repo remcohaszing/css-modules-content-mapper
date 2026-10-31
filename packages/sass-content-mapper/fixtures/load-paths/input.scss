@@ -1,0 +1,6 @@
+// `library` is resolved from the `vendor` load path.
+@use 'library';
+
+.local {
+  color: #ff0000;
+}

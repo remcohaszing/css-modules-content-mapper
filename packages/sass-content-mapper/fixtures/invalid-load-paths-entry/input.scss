@@ -1,0 +1,6 @@
+// The invalid entry is ignored, but `library` is still resolved from the `vendor` load path.
+@use 'library';
+
+.local {
+  color: #ff0000;
+}

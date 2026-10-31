@@ -12,10 +12,12 @@ The monorepo for [TypeScript](https://www.typescriptlang.org) content mappers re
 
 ## Packages
 
-| Package                                                                       | Description                               |
-| ----------------------------------------------------------------------------- | ----------------------------------------- |
-| [`css-modules-content-mapper`](packages/css-modules-content-mapper/README.md) | TypeScript content mapper for CSS modules |
+| Package                                                                       | Description                                    |
+| ----------------------------------------------------------------------------- | ---------------------------------------------- |
+| [`css-modules-content-mapper`](packages/css-modules-content-mapper/README.md) | TypeScript content mapper for CSS modules      |
+| [`sass-content-mapper`](packages/sass-content-mapper/README.md)               | TypeScript content mapper for Sass CSS modules |
 
 ## License
 
-[MIT](LICENSE.md) © [Remco Haszing](https://github.com/remcohaszing)
+[MIT](LICENSE.md) © [Remco Haszing](https://github.com/remcohaszing),
+[Brody McKee](https://github.com/mrmckeb)

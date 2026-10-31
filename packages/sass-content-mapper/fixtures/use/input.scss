@@ -1,0 +1,6 @@
+// `partial` is defined in another file, so it has no definition.
+@use 'partial';
+
+.local {
+  color: partial.$red;
+}

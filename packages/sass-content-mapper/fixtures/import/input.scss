@@ -1,0 +1,7 @@
+// `@import` is deprecated, but common in projects migrating from typescript-plugin-css-modules.
+@import 'mixins';
+@import 'folder';
+
+.local {
+  @include red;
+}
