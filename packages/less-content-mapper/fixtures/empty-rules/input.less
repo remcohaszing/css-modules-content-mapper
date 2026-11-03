@@ -1,0 +1,9 @@
+// Less doesn’t output rules without declarations, so `a` and `b` aren’t exported.
+.a {
+}
+
+.b {
+  &--c {
+    color: #ff0000;
+  }
+}

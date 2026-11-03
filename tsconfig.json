@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "./packages/css-modules-content-mapper/tsconfig.json" },
+    { "path": "./packages/less-content-mapper/tsconfig.json" },
     { "path": "./packages/sass-content-mapper/tsconfig.json" }
   ]
 }

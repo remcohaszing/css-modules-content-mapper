@@ -1,0 +1,16 @@
+.a {
+  color: red;
+}
+
+.b {
+  &:extend(.a);
+  margin: 0;
+}
+
+.c:extend(.a all) {
+  margin: 0;
+}
+
+// `d` has no declarations of its own, but it’s output as part of `a`.
+.d:extend(.a) {
+}

@@ -29,6 +29,8 @@ import {
   StreamMessageWriter
 } from 'vscode-jsonrpc/node'
 
+export { createBraceSyntax, isInLineComment } from './syntax.js'
+
 const allowedLocalsConventions = /** @type {const} */ ([
   'camelCase',
   'camelCaseOnly',
@@ -73,6 +75,9 @@ const allowedLocalsConventions = /** @type {const} */ ([
  *   Find the offset where the rule starting at the given offset ends.
  * @property {(content: string, offset: number) => boolean} isSelector
  *   Check whether the given offset is part of a selector, as opposed to a comment or a statement.
+ * @property {(content: string, offset: number) => number} [findTokenStart]
+ *   Find the offset where the selector token at the given offset starts, if the preprocessor maps
+ *   a token to a position inside it. If omitted, the given offset is the start.
  * @property {(content: string, offset: number) => number} findTokenEnd
  *   Find the offset where the selector token starting at the given offset ends. This is used for
  *   tokens that generate a class, such as `&-suffix` or `#{interpolation}`.
@@ -115,7 +120,8 @@ const allowedLocalsConventions = /** @type {const} */ ([
  *   An adapter for a CSS modules preprocessor.
  * @property {string} diagnosticSource
  *   The source identifier displayed for content mapper produced diagnostics.
- * @property {(params: PreprocessParams<Options>) => PreprocessResult} [preprocess]
+ * @property {(params: PreprocessParams<Options>) =>
+ *   PreprocessResult | Promise<PreprocessResult>} [preprocess]
  *   Compile the original content to CSS. If omitted, the content is treated as CSS.
  * @property {(options: Record<string, unknown>) => ValidateResult<Options>} [validateOptions]
  *   Validate adapter-specific options from the `contentMappers` entry. TypeScript still opens the
@@ -377,7 +383,7 @@ function createMappedSource(content, fileName, compiled) {
         return
       }
 
-      let start = origin
+      let start = syntax.findTokenStart?.(content, origin) ?? origin
       if ((content[start] === '.' || content[start] === '#') && content[start + 1] !== '{') {
         start += 1
       }
@@ -452,6 +458,28 @@ function collectLocalNames(localsConvention, className, localNames) {
     default:
       localNames.add(className)
       break
+  }
+}
+
+/**
+ * Create a diagnostic for an unexpected error.
+ *
+ * @param {string} prefix
+ *   What couldn’t be done.
+ * @param {unknown} error
+ *   The error that was thrown.
+ * @param {number} code
+ *   The diagnostic code.
+ * @returns {MapperDiagnostic}
+ *   The diagnostic.
+ */
+function createErrorDiagnostic(prefix, error, code) {
+  const reason = error instanceof Error ? error.message : String(error)
+  return {
+    messageText: `${prefix}: ${reason.replace(/\.$/, '')}.`,
+    start: 0,
+    length: 0,
+    code
   }
 }
 
@@ -676,10 +704,10 @@ export function startMapper(adapter) {
    *
    * @param {TransformParams} params
    *   The transform request parameters as given by TypeScript.
-   * @returns {TransformResult}
+   * @returns {Promise<TransformResult>}
    *   The transform response expected by TypeScript.
    */
-  function transform({ content, fileName, projectHandle }) {
+  async function transform({ content, fileName, projectHandle }) {
     const project = projects.get(projectHandle)
     assert.ok(project)
 
@@ -695,7 +723,7 @@ export function startMapper(adapter) {
     /** @type {PreprocessResult} */
     let result
     try {
-      result = adapter.preprocess({
+      result = await adapter.preprocess({
         configFileName: project.configFileName,
         content,
         fileName,
@@ -704,40 +732,38 @@ export function startMapper(adapter) {
     } catch (error) {
       // An adapter should report compile errors as diagnostics, but anything it throws is treated
       // the same way, so a bug in a preprocessor doesn’t fail the TypeScript request.
-      const reason = error instanceof Error ? error.message : String(error)
-      result = {
-        diagnostics: [
-          {
-            messageText: `Cannot compile this file: ${reason.replace(/\.$/, '')}.`,
-            start: 0,
-            length: 0,
-            code: 2000
-          }
-        ]
+      result = { diagnostics: [createErrorDiagnostic('Cannot compile this file', error, 2000)] }
+    }
+
+    if (!('diagnostics' in result)) {
+      try {
+        const { mappings, text } = generate(
+          createMappedSource(content, fileName, result),
+          ext,
+          fileName,
+          project
+        )
+        project.lastResults.set(fileName, text)
+        return { extension: '.cts', text, mappings }
+      } catch (error) {
+        // The file compiled, but its types can’t be generated, for example because of an invalid
+        // source map. This shouldn’t fail the TypeScript request either.
+        result = {
+          diagnostics: [createErrorDiagnostic('Cannot generate types for this file', error, 2001)]
+        }
       }
     }
 
-    if ('diagnostics' in result) {
-      // Keep the last known exports while the file can’t be compiled, for example while typing.
-      // The mappings are dropped, because they point at offsets in outdated content.
-      return {
-        extension: '.cts',
-        text:
-          project.lastResults.get(fileName) ??
-          generate(createCssSource(''), ext, fileName, project).text,
-        mappings: [],
-        diagnostics: result.diagnostics
-      }
+    // Keep the last known exports while the file can’t be compiled, for example while typing. The
+    // mappings are dropped, because they point at offsets in outdated content.
+    return {
+      extension: '.cts',
+      text:
+        project.lastResults.get(fileName) ??
+        generate(createCssSource(''), ext, fileName, project).text,
+      mappings: [],
+      diagnostics: result.diagnostics
     }
-
-    const { mappings, text } = generate(
-      createMappedSource(content, fileName, result),
-      ext,
-      fileName,
-      project
-    )
-    project.lastResults.set(fileName, text)
-    return { extension: '.cts', text, mappings }
   }
 
   const connection = createMessageConnection(

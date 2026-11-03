@@ -15,6 +15,7 @@ The monorepo for [TypeScript](https://www.typescriptlang.org) content mappers re
 | Package                                                                       | Description                                    |
 | ----------------------------------------------------------------------------- | ---------------------------------------------- |
 | [`css-modules-content-mapper`](packages/css-modules-content-mapper/README.md) | TypeScript content mapper for CSS modules      |
+| [`less-content-mapper`](packages/less-content-mapper/README.md)               | TypeScript content mapper for Less CSS modules |
 | [`sass-content-mapper`](packages/sass-content-mapper/README.md)               | TypeScript content mapper for Sass CSS modules |
 
 ## License

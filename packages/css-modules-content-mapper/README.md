@@ -76,7 +76,8 @@ This project does **not** check CSS validity. You can use a linter, such as
 [Stylelint](https://stylelint.io), for that. This project also doesn’t support CSS variants. For
 [Sass](https://sass-lang.com), use
 [`sass-content-mapper`](https://github.com/remcohaszing/css-modules-content-mapper/tree/main/packages/sass-content-mapper).
-Support for [Less](https://lesscss.org) is coming soon.
+For [Less](https://lesscss.org), use
+[`less-content-mapper`](https://github.com/remcohaszing/css-modules-content-mapper/tree/main/packages/less-content-mapper).
 
 ## Compatibility
 

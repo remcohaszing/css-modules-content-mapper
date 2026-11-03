@@ -1,0 +1,23 @@
+// A class is also a mixin, so `a` is exported. A mixin with parentheses isn’t output.
+.a {
+  color: #ff0000;
+}
+
+.b() {
+  color: green;
+}
+
+.c {
+  .a();
+  .b();
+}
+
+.mixin() {
+  .child {
+    color: blue;
+  }
+}
+
+.parent {
+  .mixin();
+}

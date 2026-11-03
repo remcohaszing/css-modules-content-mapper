@@ -14,6 +14,46 @@ startMapper({
 })
 `
 
+const invalidMapScript = `
+import { createBraceSyntax, startMapper } from './lib/core.js'
+
+startMapper({
+  diagnosticSource: 'Test',
+  preprocess() {
+    return {
+      css: '.a {}',
+      map: { version: 3, names: [], mappings: 'AAAA' },
+      syntax: createBraceSyntax('#')
+    }
+  }
+})
+`
+
+test('reports an invalid source map as a diagnostic', async () => {
+  using contentMapper = await createContentMapper(new URL('../package.json', import.meta.url), {
+    exec: ['node', '--input-type=module', '--eval', invalidMapScript]
+  })
+
+  await using project = await contentMapper.openProject(
+    new URL('../fixtures/class/', import.meta.url)
+  )
+
+  const { diagnostics, ...result } = await project.transform('/test.css', '.a {}')
+  assert.deepEqual(result, {
+    extension: '.cts',
+    text: 'declare const styles: {}\n\nexport = styles\n',
+    mappings: []
+  })
+
+  // The rest of the message comes from the source map parser.
+  assert.equal(diagnostics?.length, 1)
+  const [diagnostic] = diagnostics
+  assert.match(String(diagnostic?.messageText), /^Cannot generate types for this file: /)
+  assert.equal(diagnostic?.code, 2001)
+  assert.equal(diagnostic.start, 0)
+  assert.equal(diagnostic.length, 0)
+})
+
 test('reports an error thrown by the preprocessor as a diagnostic', async () => {
   using contentMapper = await createContentMapper(new URL('../package.json', import.meta.url), {
     exec: ['node', '--input-type=module', '--eval', script]
