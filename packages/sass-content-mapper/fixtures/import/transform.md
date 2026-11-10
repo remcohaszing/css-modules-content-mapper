@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  */
@@ -16,12 +16,26 @@ readonly index: string
 readonly local: string
 }
 
-export = styles
+export default styles
+
+/**
+ */
+export declare const index: string
+
+/**
+ * ```scss
+ * .local {
+ *   @include red;
+ * }
+ * ```
+ */
+export declare const local: string
 
 ````
 
 ## Alias mappings
 
-| Original |     | Virtual |     | Definition |
-| -------- | --: | ------- | --: | :--------: |
-| `local`  | 135 | `local` | 127 |      ✓     |
+| Original |     | Virtual |     | Definition | References |
+| -------- | --: | ------- | --: | :--------: | :--------: |
+| `local`  | 135 | `local` | 127 |      ✓     |      ✓     |
+| `local`  | 135 | `local` | 294 |      ✓     |      ✓     |

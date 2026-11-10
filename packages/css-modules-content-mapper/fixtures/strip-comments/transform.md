@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  * ```css
@@ -12,12 +12,22 @@ declare const styles: {
 readonly warning: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```css
+ * .warning {
+ *   background: orange;
+ * }
+ * ```
+ */
+export declare const warning: string
 
 ````
 
 ## Alias mappings
 
-| Original  |    | Virtual   |     | Definition |
-| --------- | -: | --------- | --: | :--------: |
-| `warning` |  1 | `warning` | 102 |      ✓     |
+| Original  |    | Virtual   |     | Definition | References |
+| --------- | -: | --------- | --: | :--------: | :--------: |
+| `warning` |  1 | `warning` | 102 |      ✓     |      ✓     |
+| `warning` |  1 | `warning` | 234 |      ✓     |      ✓     |

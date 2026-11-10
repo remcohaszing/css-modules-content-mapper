@@ -32,7 +32,9 @@
         "node",
         "lib/content-mapper.js"
       ],
-      "compilerOptions": [],
+      "compilerOptions": [
+        "verbatimModuleSyntax"
+      ],
       "dynamicConfig": false
     }
   },

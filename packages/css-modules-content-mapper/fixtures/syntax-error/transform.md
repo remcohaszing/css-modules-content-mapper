@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  * ```css
@@ -10,12 +10,20 @@ declare const styles: {
 readonly red: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```css
+ * .
+ * ```
+ */
+export declare const red: string
 
 ````
 
 ## Alias mappings
 
-| Original |    | Virtual |    | Definition |
-| -------- | -: | ------- | -: | :--------: |
-| `red`    |  1 | `red`   | 63 |      ✓     |
+| Original |    | Virtual |     | Definition | References |
+| -------- | -: | ------- | --: | :--------: | :--------: |
+| `red`    |  1 | `red`   |  63 |      ✓     |      ✓     |
+| `red`    |  1 | `red`   | 152 |      ✓     |      ✓     |

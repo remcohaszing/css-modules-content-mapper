@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  * ```scss
@@ -12,12 +12,12 @@ declare const styles: {
 readonly "b--c": string
 }
 
-export = styles
+export default styles
 
 ````
 
 ## Alias mappings
 
-| Original |    | Virtual  |     | Definition |
-| -------- | -: | -------- | --: | :--------: |
-| `&--c`   | 98 | `"b--c"` | 101 |      ✓     |
+| Original |    | Virtual  |     | Definition | References |
+| -------- | -: | -------- | --: | :--------: | :--------: |
+| `&--c`   | 98 | `"b--c"` | 101 |      ✓     |      ✓     |
