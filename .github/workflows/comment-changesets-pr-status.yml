@@ -1,0 +1,32 @@
+name: comment changesets pr status
+
+on:
+  pull_request_target:
+
+permissions: {}
+
+concurrency:
+  group: ${{github.workflow}}-${{github.event.pull_request.number}}
+
+jobs:
+  pr-status:
+    if: ${{!startsWith(github.head_ref, 'changeset-release/')}}
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+    outputs:
+      comment-body: ${{steps.pr-status.outputs.comment-body}}
+    steps:
+      - uses: actions/checkout@v7
+      - id: pr-status
+        uses: changesets/action/pr-status@v2
+
+  pr-comment:
+    needs: pr-status
+    runs-on: ubuntu-slim
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: changesets/action/pr-comment@v2
+        with:
+          body: ${{needs.pr-status.outputs.comment-body}}
