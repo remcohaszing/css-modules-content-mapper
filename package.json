@@ -23,6 +23,7 @@
     }
   },
   "scripts": {
+    "changeset-version": "changeset version && remark . --silent && npm install --package-lock-only",
     "test": "node --test"
   },
   "allowScripts": {
