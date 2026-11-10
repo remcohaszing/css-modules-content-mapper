@@ -28,3 +28,5 @@ jobs:
           package-manager-cache: false
       - run: npm ci
       - uses: changesets/action@v2
+        with:
+          version-script: changeset version && remark . --silent && npm install --package-lock-only
