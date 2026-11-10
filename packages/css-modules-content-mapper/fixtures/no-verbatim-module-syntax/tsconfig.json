@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "noEmit": true
+  },
+  "contentMappers": [
+    {
+      "package": "css-modules-content-mapper",
+      "extensions": [".css"]
+    }
+  ]
+}

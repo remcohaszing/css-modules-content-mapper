@@ -1,0 +1,23 @@
+.cls {
+  color: red;
+}
+
+.styles {
+  color: blue;
+}
+
+.default {
+  color: green;
+}
+
+.hyphenated-name {
+  color: yellow;
+}
+
+.🐈 {
+  content: 'cat';
+}
+
+.class {
+  color: purple;
+}

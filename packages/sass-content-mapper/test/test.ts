@@ -150,8 +150,8 @@ test('reports a diagnostic if neither sass-embedded nor sass is installed', asyn
     '.a {\n  color: red;\n}\n'
   )
   assert.deepEqual(transform, {
-    extension: '.cts',
-    text: 'declare const styles: {}\n\nexport = styles\n',
+    extension: '.mts',
+    text: 'declare const styles: {}\n\nexport default styles\n',
     mappings: [],
     diagnostics: [{ messageText, start: 0, length: 0, code: 2002 }]
   })

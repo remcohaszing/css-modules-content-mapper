@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  * ```css
@@ -12,15 +12,15 @@ declare const styles: {
 readonly "hyphenated-class": string
 }
 
-export = styles
+export default styles
 
 ````
 
 ## Alias mappings
 
-| Original           |    | Virtual              |     | Definition |
-| ------------------ | -: | -------------------- | --: | :--------: |
-| `hyphenated-class` |  1 | `"hyphenated-class"` | 107 |      ✓     |
+| Original           |    | Virtual              |     | Definition | References |
+| ------------------ | -: | -------------------- | --: | :--------: | :--------: |
+| `hyphenated-class` |  1 | `"hyphenated-class"` | 107 |      ✓     |      ✓     |
 
 ## Option diagnostics
 

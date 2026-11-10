@@ -29,6 +29,8 @@ import {
   StreamMessageWriter
 } from 'vscode-jsonrpc/node'
 
+import { reservedWords } from './reserved-words.js'
+
 const allowedLocalsConventions = /** @type {const} */ ([
   'camelCase',
   'camelCaseOnly',
@@ -45,6 +47,8 @@ const allowedLocalsConventions = /** @type {const} */ ([
 /**
  * @typedef CssContentMapperOptions
  *   Shared options for all CSS modules content mappers.
+ * @property {boolean} [defaultExport=true]
+ *   Whether to generate a default export, an object with a property for every class.
  * @property {LocalsConvention} [localsConvention]
  *   How to expose class names.
  */
@@ -132,6 +136,10 @@ const allowedLocalsConventions = /** @type {const} */ ([
  * @typedef Project
  * @property {string} configFileName
  *   The absolute tsconfig path, or an empty string for a project without a config file.
+ * @property {boolean} defaultExport
+ *   Whether to generate a default export, an object with a property for every class.
+ * @property {'.mts' | '.ts'} extension
+ *   The extension of the virtual file, which defines its module format.
  * @property {LocalsConvention | undefined} localsConvention
  *   The locals convention to apply.
  * @property {Options} options
@@ -400,6 +408,84 @@ function createMappedSource(content, fileName, compiled) {
 }
 
 /**
+ * The mapping features for every exported name. Definition lets “Go to Definition” in TypeScript
+ * jump to the CSS. References lets “Find All References” go both ways between TypeScript and CSS.
+ */
+const exportFeatures =
+  /** @satisfies {SpanMapFeature.Definition} */ (8) |
+  /** @satisfies {SpanMapFeature.References} */ (64)
+
+/**
+ * A part of the virtual text, with mappings relative to its own start. This allows writing several
+ * parts in a single pass, and joining them afterwards.
+ */
+class Section {
+  /**
+   * The virtual text of the section.
+   */
+  text = ''
+
+  /**
+   * The mappings, relative to the start of the section.
+   *
+   * @type {SpanMapping[]}
+   */
+  mappings = []
+
+  /**
+   * Append virtual text, optionally mapped to the original content.
+   *
+   * @param {string} virtual
+   *   The virtual text to append.
+   * @param {Location} [original]
+   *   The location in the original content to map the text to.
+   */
+  append(virtual, original) {
+    if (original) {
+      this.mappings.push([
+        this.text.length,
+        virtual.length,
+        original.offset,
+        original.length,
+        /** @satisfies {SpanMapKind.Alias} */ (2),
+        exportFeatures
+      ])
+    }
+    this.text += virtual
+  }
+
+  /**
+   * Append another section, moving its mappings to where its text ends up.
+   *
+   * @param {Section} section
+   *   The section to append.
+   */
+  appendSection(section) {
+    for (const mapping of section.mappings) {
+      const moved = /** @type {SpanMapping} */ ([...mapping])
+      moved[0] += this.text.length
+      this.mappings.push(moved)
+    }
+    this.text += section.text
+  }
+}
+
+/**
+ * Check whether a name is a valid `BindingIdentifier` in a module, so it can be declared directly,
+ * as in `export declare const name`. Other names are exported using an alias, because an export
+ * name only needs to be an `IdentifierName`.
+ *
+ * @param {string} name
+ *   The name to check.
+ * @returns {boolean}
+ *   Whether the name is a valid binding identifier.
+ * @see https://tc39.es/ecma262/#prod-BindingIdentifier
+ */
+function isBindingIdentifier(name) {
+  return isIdentifierName(name) && !reservedWords.has(name)
+}
+
+/**
  * Convert a string from dashes to camel case.
  *
  * @param {string} string
@@ -504,11 +590,20 @@ export function startMapper(adapter) {
    * @returns {OpenProjectResult}
    *   The result that TypeScript expects.
    */
-  function openProject({ configFileName, options = {}, projectHandle }) {
-    const { localsConvention } = /** @type {CssContentMapperOptions} */ (options)
+  function openProject({ compilerOptions = {}, configFileName, options = {}, projectHandle }) {
+    const { defaultExport, localsConvention } = /** @type {CssContentMapperOptions} */ (options)
 
     /** @type {OptionDiagnostic[]} */
     const optionDiagnostics = []
+
+    const isValidDefaultExport = defaultExport == null || typeof defaultExport === 'boolean'
+    if (!isValidDefaultExport) {
+      optionDiagnostics.push({
+        path: ['defaultExport'],
+        messageText: "Argument for 'defaultExport' option must be a boolean.",
+        code: 1004
+      })
+    }
 
     const isValidLocalsConvention =
       localsConvention == null || allowedLocalsConventions.includes(localsConvention)
@@ -530,6 +625,12 @@ export function startMapper(adapter) {
     // the project is stored with only the valid values.
     projects.set(projectHandle, {
       configFileName: configFileName ?? '',
+      defaultExport: defaultExport !== false,
+      // The virtual text uses ESM syntax. TypeScript doesn’t allow that in a CommonJS file if
+      // `verbatimModuleSyntax` is enabled, and a `.ts` file is CommonJS if its `package.json` says
+      // so. A `.mts` file is always ESM. It isn’t used otherwise, because a CommonJS file can’t
+      // import ESM if `module` is `node16` or `node18`.
+      extension: compilerOptions.verbatimModuleSyntax ? '.mts' : '.ts',
       localsConvention: isValidLocalsConvention ? localsConvention : undefined,
       // Without `validateOptions`, the adapter takes no options.
       options: validated ? validated.options : /** @type {Options} */ ({}),
@@ -554,14 +655,10 @@ export function startMapper(adapter) {
    *   The generated text and its mappings to the original content.
    */
   function generate(source, ext, fileName, project) {
-    let text = 'declare const styles: {'
     let comment = ''
 
     /** @type {Map<string, { doc: string, localNames: Set<string>, original: Location | undefined, snippets: Snippet[] }>} */
     const data = new Map()
-
-    /** @type {SpanMapping[]} */
-    const mappings = []
 
     const root = safe(
       source.content,
@@ -645,30 +742,119 @@ export function startMapper(adapter) {
       }
     })
 
-    for (const [, { doc, localNames, original }] of data) {
+    // Different classes can have the same local name, for example `.foo-bar` and `.fooBar` with the
+    // `camelCase` convention. Each name is exported once, mapped to the first class that has it.
+    /** @type {Map<string, { doc: string, original: Location | undefined }>} */
+    const exportedNames = new Map()
+    for (const { doc, localNames, original } of data.values()) {
       for (const localName of localNames) {
-        text += '\n/**\n'
-        text += doc
-        text += ' */\nreadonly '
-        const quoted = isIdentifierName(localName) ? localName : JSON.stringify(localName)
-        if (original != null) {
-          mappings.push([
-            text.length,
-            quoted.length,
-            original.offset,
-            original.length,
-            /** @satisfies {SpanMapKind.Alias} */ (2),
-            /** @satisfies {SpanMapFeature.Definition} */ (8)
-          ])
+        if (!exportedNames.has(localName)) {
+          exportedNames.set(localName, { doc, original })
         }
-        text += quoted
-        text += ': string\n'
       }
     }
 
-    text += '}\n\nexport = styles\n'
+    // The named exports mirror what bundlers generate. With a default export, only names that can
+    // be declared directly are exported by name. Without one, every name is exported, so a class
+    // named `default` becomes the default export.
+    /** @type {Map<string, { doc: string, original: Location | undefined }>} */
+    const namedExports = new Map()
+    for (const [localName, value] of exportedNames) {
+      if (!project.defaultExport || isBindingIdentifier(localName)) {
+        namedExports.set(localName, value)
+      }
+    }
 
-    return { text, mappings }
+    const used = new Set(exportedNames.keys())
+
+    /**
+     * Get a binding name that isn’t used by any export.
+     *
+     * @param {string} base
+     *   The preferred name.
+     * @returns {string}
+     *   A unique binding name.
+     */
+    function uniqueName(base) {
+      let name = base
+      while (used.has(name)) {
+        name = `_${name}`
+      }
+      used.add(name)
+      return name
+    }
+
+    // With a default export, all names are members of one object. Without it, no `styles`
+    // declaration exists, so a class with that name can be exported directly.
+    const members = project.defaultExport ? new Section() : undefined
+    const objectName = members ? uniqueName('styles') : ''
+    const named = new Section()
+
+    // Names that aren’t a binding identifier are declared under a unique name and exported with an
+    // alias, such as `export { _0 as "🐈" }`.
+    const aliases = new Section()
+    let aliasCount = 0
+
+    if (members) {
+      members.append(`declare const ${objectName}: {`)
+      for (const [localName, { doc, original }] of exportedNames) {
+        members.append(`\n/**\n${doc} */\nreadonly `)
+        members.append(
+          isIdentifierName(localName) ? localName : JSON.stringify(localName),
+          original
+        )
+        members.append(': string\n')
+      }
+      members.append(`}\n\nexport default ${objectName}\n`)
+    }
+
+    for (const [exportName, { doc, original }] of namedExports) {
+      const jsdoc = `/**\n${doc} */\n`
+
+      // Separate the declaration from what comes before it, if anything.
+      if (members || named.text) {
+        named.append('\n')
+      }
+
+      if (isBindingIdentifier(exportName)) {
+        named.append(`${jsdoc}export declare const `)
+        named.append(exportName, original)
+      } else {
+        const local = uniqueName(`_${aliasCount}`)
+        aliasCount += 1
+        named.append(`${jsdoc}declare const `)
+        named.append(local, original)
+
+        aliases.append(aliases.text ? ', ' : '\nexport { ')
+        aliases.append(`${local} as `)
+        // Map the export name too. TypeScript treats the alias as a rename, so “Find All
+        // References” on an import such as `import { '🐈' as cat }` stops at the export name.
+        // A reserved word doesn’t need quotes. A string literal is only used if it’s needed,
+        // because TypeScript doesn’t support those if `module` is `es2015` or `es2020`.
+        aliases.append(
+          isIdentifierName(exportName) ? exportName : JSON.stringify(exportName),
+          original
+        )
+      }
+      named.append(': string\n')
+    }
+    if (aliases.text) {
+      aliases.append(' }\n')
+    }
+
+    const output = new Section()
+    if (members) {
+      output.appendSection(members)
+    }
+    output.appendSection(named)
+    output.appendSection(aliases)
+
+    // Without any exports, TypeScript treats the file as a script instead of a module.
+    if (!output.text) {
+      output.append('export {}\n')
+    }
+
+    return { text: output.text, mappings: output.mappings }
   }
 
   /**
@@ -687,7 +873,7 @@ export function startMapper(adapter) {
 
     if (!adapter.preprocess) {
       return {
-        extension: '.cts',
+        extension: project.extension,
         ...generate(createCssSource(content), ext, fileName, project)
       }
     }
@@ -721,7 +907,7 @@ export function startMapper(adapter) {
       // Keep the last known exports while the file can’t be compiled, for example while typing.
       // The mappings are dropped, because they point at offsets in outdated content.
       return {
-        extension: '.cts',
+        extension: project.extension,
         text:
           project.lastResults.get(fileName) ??
           generate(createCssSource(''), ext, fileName, project).text,
@@ -737,7 +923,7 @@ export function startMapper(adapter) {
       project
     )
     project.lastResults.set(fileName, text)
-    return { extension: '.cts', text, mappings }
+    return { extension: project.extension, text, mappings }
   }
 
   const connection = createMessageConnection(

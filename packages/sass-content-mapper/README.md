@@ -62,6 +62,22 @@ tsc --runExternalCode
 
 If your code uses undefined CSS module classes, this will show an error.
 
+The default export has a property for every class. A class can also be imported by name if its name
+works as a JavaScript identifier.
+
+```ts
+import styles, { title } from './example.module.scss'
+
+// The `.title` class.
+console.log(title)
+
+// The same class.
+console.log(styles.title)
+
+// The `.is-active` class. Its name isn’t an identifier, so it isn’t a named export.
+console.log(styles['is-active'])
+```
+
 ## Editor support
 
 In addition to type checking, this content mapper also provides useful editor integrations. Each
@@ -86,6 +102,14 @@ compile are kept.
 
 ## Options
 
+- `defaultExport` (`boolean`, default `true`): Whether to generate a default export, an object with
+  a property for every class. Set this to `false` if your bundler only generates named exports, as
+  [webpack’s native CSS support](https://webpack.js.org/guides/native-css/#css-modules) does unless
+  you configure it otherwise. Every class is then a named export. This includes a class named
+  `default`, so a default import gives you that class. A class whose name isn’t a valid identifier
+  has to be imported under another name, for example
+  `import { 'is-active' as isActive } from './example.module.scss'`. TypeScript doesn’t support such
+  imports if the `module` compiler option is `es2015` or `es2020`.
 - `localsConvention` (`'camelCase' | 'camelCaseOnly' | 'dashes' | 'dashesOnly' | 'all' | 'none'`):
   Style of exported classnames, the keys in your json. For more information, see
   [`postcss-modules`](https://github.com/madyankin/postcss-modules#localsconvention).

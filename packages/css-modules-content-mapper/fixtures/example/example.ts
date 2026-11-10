@@ -1,6 +1,6 @@
-import styles, { '🐈' as cat, id, cls, nested, '🦉' as owl } from './input.module.css'
+import styles, { id, cls, nested } from './input.module.css'
 
-cat
+cls
 
 styles.hyphenatedClassName
 styles['hyphenated-class-name']

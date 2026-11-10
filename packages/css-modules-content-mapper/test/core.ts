@@ -30,8 +30,8 @@ test('reports an error thrown by the preprocessor as a diagnostic', async () => 
 
   const result = await project.transform('/test.css', '.a {}')
   assert.deepEqual(result, {
-    extension: '.cts',
-    text: 'declare const styles: {}\n\nexport = styles\n',
+    extension: '.mts',
+    text: 'declare const styles: {}\n\nexport default styles\n',
     mappings: [],
     diagnostics: [
       {

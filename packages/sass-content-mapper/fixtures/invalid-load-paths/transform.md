@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  * ```scss
@@ -12,15 +12,25 @@ declare const styles: {
 readonly local: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```scss
+ * .local {
+ *   color: #ff0000;
+ * }
+ * ```
+ */
+export declare const local: string
 
 ````
 
 ## Alias mappings
 
-| Original |    | Virtual |    | Definition |
-| -------- | -: | ------- | -: | :--------: |
-| `local`  | 60 | `local` | 97 |      ✓     |
+| Original |    | Virtual |     | Definition | References |
+| -------- | -: | ------- | --: | :--------: | :--------: |
+| `local`  | 60 | `local` |  97 |      ✓     |      ✓     |
+| `local`  | 60 | `local` | 222 |      ✓     |      ✓     |
 
 ## Option diagnostics
 

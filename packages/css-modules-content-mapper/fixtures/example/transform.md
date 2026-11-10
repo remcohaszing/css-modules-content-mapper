@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````mts
 declare const styles: {
 /**
  * ```css
@@ -77,17 +77,60 @@ readonly "🐈": string
 readonly "🦉": string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```css
+ * #id {
+ *   font-weight: bold;
+ * }
+ * ```
+ */
+export declare const id: string
+
+/**
+ * 
+ * asd
+ * ```css
+ * .cls {
+ *   color: #ff0000;
+ * 
+ *   &.nested {
+ *     background: green;
+ *   }
+ * }
+ * ```
+ *
+ * second comment!
+ * ```css
+ * .cls {
+ *   background: green;
+ * }
+ * ```
+ */
+export declare const cls: string
+
+/**
+ * ```css
+ *   &.nested {
+ *     background: green;
+ *   }
+ * ```
+ */
+export declare const nested: string
 
 ````
 
 ## Alias mappings
 
-| Original                |     | Virtual                   |     | Definition |
-| ----------------------- | --: | ------------------------- | --: | :--------: |
-| `id`                    |   1 | `id`                      |  96 |      ✓     |
-| `cls`                   |  47 | `cls`                     | 320 |      ✓     |
-| `nested`                |  86 | `nested`                  | 416 |      ✓     |
-| `hyphenated-class-name` | 194 | `"hyphenated-class-name"` | 603 |      ✓     |
-| `🐈`                    | 298 | `"🐈"`                    | 727 |      ✓     |
-| `🦉`                    | 309 | `"🦉"`                    | 832 |      ✓     |
+| Original                |     | Virtual                   |      | Definition | References |
+| ----------------------- | --: | ------------------------- | ---: | :--------: | :--------: |
+| `id`                    |   1 | `id`                      |   96 |      ✓     |      ✓     |
+| `cls`                   |  47 | `cls`                     |  320 |      ✓     |      ✓     |
+| `nested`                |  86 | `nested`                  |  416 |      ✓     |      ✓     |
+| `hyphenated-class-name` | 194 | `"hyphenated-class-name"` |  603 |      ✓     |      ✓     |
+| `🐈`                    | 298 | `"🐈"`                    |  727 |      ✓     |      ✓     |
+| `🦉`                    | 309 | `"🦉"`                    |  832 |      ✓     |      ✓     |
+| `id`                    |   1 | `id`                      |  955 |      ✓     |      ✓     |
+| `cls`                   |  47 | `cls`                     | 1191 |      ✓     |      ✓     |
+| `nested`                |  86 | `nested`                  | 1299 |      ✓     |      ✓     |
