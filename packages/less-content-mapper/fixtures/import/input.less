@@ -1,0 +1,8 @@
+// Unlike in Sass, `@import` isn’t deprecated. Less also has no partials or folder index files, so
+// files are imported using their full name.
+@import 'mixins';
+@import 'folder/index';
+
+.local {
+  .red();
+}

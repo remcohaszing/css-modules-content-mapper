@@ -1,0 +1,15 @@
+@color: red;
+
+.text-@{color} {
+  color: @color;
+}
+
+.@{color}-text {
+  color: @color;
+}
+
+@selector: ~'.a';
+
+@{selector} {
+  color: red;
+}

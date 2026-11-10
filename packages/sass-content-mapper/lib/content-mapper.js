@@ -74,14 +74,14 @@ startMapper({
     const validLoadPaths = []
 
     if (!sass) {
-      diagnostics.push({ path: [], messageText: missingSassMessage, code: 1003 })
+      diagnostics.push({ path: [], messageText: missingSassMessage, code: 3002 })
     }
 
     if (loadPaths != null && !Array.isArray(loadPaths)) {
       diagnostics.push({
         path: ['loadPaths'],
         messageText: "Content mapper option 'loadPaths' requires a value of type Array.",
-        code: 1002
+        code: 3001
       })
     } else if (loadPaths) {
       for (const [index, path] of loadPaths.entries()) {
@@ -91,7 +91,7 @@ startMapper({
           diagnostics.push({
             path: ['loadPaths', index],
             messageText: "Content mapper option 'loadPaths' requires a value of type string.",
-            code: 1002
+            code: 3001
           })
         }
       }
@@ -102,7 +102,7 @@ startMapper({
 
   preprocess({ configFileName, content, fileName, options }) {
     if (!sass || !compiler) {
-      return { diagnostics: [{ messageText: missingSassMessage, start: 0, length: 0, code: 2002 }] }
+      return { diagnostics: [{ messageText: missingSassMessage, start: 0, length: 0, code: 4002 }] }
     }
 
     const projectDirectory = configFileName ? dirname(configFileName) : dirname(fileName)
@@ -140,7 +140,7 @@ startMapper({
         const start = span.start.offset
         return {
           diagnostics: [
-            { messageText: sassMessage, start, length: span.end.offset - start, code: 2001 }
+            { messageText: sassMessage, start, length: span.end.offset - start, code: 4001 }
           ]
         }
       }
@@ -157,7 +157,7 @@ startMapper({
       }
 
       return {
-        diagnostics: [{ messageText, start: 0, length: 0, code: 2001 }]
+        diagnostics: [{ messageText, start: 0, length: 0, code: 4001 }]
       }
     }
   }

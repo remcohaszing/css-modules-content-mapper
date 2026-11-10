@@ -1,0 +1,82 @@
+.a {
+  .b {
+    .c {
+      color: red;
+    }
+
+    &-d {
+      color: red;
+    }
+  }
+
+  .e,
+  .f {
+    color: red;
+  }
+
+  > .g {
+    color: red;
+  }
+
+  .h & {
+    color: red;
+  }
+
+  &:hover .i {
+    color: red;
+  }
+
+  @media print {
+    .j {
+      color: red;
+    }
+  }
+}
+
+.k,
+.l {
+  .m {
+    color: red;
+  }
+}
+
+.p {
+  &:hover {
+    color: red;
+  }
+
+  &.q {
+    color: red;
+  }
+
+  .r {
+    &.s {
+      color: red;
+    }
+
+    &:focus {
+      color: red;
+    }
+
+    & .t {
+      color: red;
+    }
+
+    & > .u {
+      color: red;
+    }
+
+    .v & {
+      color: red;
+    }
+  }
+}
+
+// `var-n` has no rule of its own, so it has the definition of `o`, like in Sass.
+.@{name}-n {
+  .o {
+    color: red;
+  }
+}
+
+@name: var;

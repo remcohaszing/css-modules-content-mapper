@@ -142,7 +142,7 @@ test('reports a diagnostic if neither sass-embedded nor sass is installed', asyn
   await using project = await contentMapper.openProject(fixture)
 
   assert.deepEqual(project.openProjectResult, {
-    optionDiagnostics: [{ path: [], messageText, code: 1003 }]
+    optionDiagnostics: [{ path: [], messageText, code: 3002 }]
   })
 
   const transform = await project.transform(
@@ -153,6 +153,6 @@ test('reports a diagnostic if neither sass-embedded nor sass is installed', asyn
     extension: '.cts',
     text: 'declare const styles: {}\n\nexport = styles\n',
     mappings: [],
-    diagnostics: [{ messageText, start: 0, length: 0, code: 2002 }]
+    diagnostics: [{ messageText, start: 0, length: 0, code: 4002 }]
   })
 })

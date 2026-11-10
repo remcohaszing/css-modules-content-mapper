@@ -1,0 +1,24 @@
+@colors: red, green;
+
+each(@colors, {
+  .text-@{value} {
+    color: @value;
+  }
+});
+
+each(range(2), {
+  .column-@{value} {
+    height: (@value * 50px);
+  }
+});
+
+.a() {
+  one: blue;
+  two: green;
+}
+
+.a {
+  each(.a(), .(@v, @k, @i) {
+    @{k}-@{i}: @v;
+  });
+}

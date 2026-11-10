@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "noEmit": true,
+    "verbatimModuleSyntax": true
+  },
+  "contentMappers": [
+    {
+      "package": "less-content-mapper",
+      "extensions": [".less"],
+      "options": {
+        "localsConvention": "camelCase"
+      }
+    }
+  ]
+}
