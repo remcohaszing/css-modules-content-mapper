@@ -30,6 +30,7 @@
     "unrs-resolver": false
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.0",
     "@remcohaszing/eslint": "^14.0.0",
     "prettier": "^3.0.0",
