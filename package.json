@@ -23,9 +23,7 @@
     }
   },
   "scripts": {
-    "test": "node --test",
-    "publish-packages": "changeset publish",
-    "version-packages": "changeset version && npm install --package-lock-only"
+    "test": "node --test"
   },
   "allowScripts": {
     "@parcel/watcher": false,
