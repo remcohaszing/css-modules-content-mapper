@@ -22,6 +22,6 @@ export = styles
 
 ## Alias mappings
 
-| Original |    | Virtual |     | Definition |
-| -------- | -: | ------- | --: | :--------: |
-| `local`  | 72 | `local` | 131 |      ✓     |
+| Original |    | Virtual |     | Definition | References |
+| -------- | -: | ------- | --: | :--------: | :--------: |
+| `local`  | 72 | `local` | 131 |      ✓     |      ✓     |

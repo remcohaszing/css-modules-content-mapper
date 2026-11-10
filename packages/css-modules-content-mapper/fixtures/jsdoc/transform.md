@@ -35,7 +35,7 @@ export = styles
 
 ## Alias mappings
 
-| Original |    | Virtual |     | Definition |
-| -------- | -: | ------- | --: | :--------: |
-| `a`      | 35 | `a`     | 174 |      ✓     |
-| `b`      | 63 | `b`     | 251 |      ✓     |
+| Original |    | Virtual |     | Definition | References |
+| -------- | -: | ------- | --: | :--------: | :--------: |
+| `a`      | 35 | `a`     | 174 |      ✓     |      ✓     |
+| `b`      | 63 | `b`     | 251 |      ✓     |      ✓     |

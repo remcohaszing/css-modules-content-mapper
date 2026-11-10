@@ -36,8 +36,8 @@ export = styles
 
 ## Alias mappings
 
-| Original        |     | Virtual      |     | Definition |
-| --------------- | --: | ------------ | --: | :--------: |
-| `text-@{color}` |  15 | `"text-red"` | 104 |      ✓     |
-| `@{color}-text` |  52 | `"red-text"` | 204 |      ✓     |
-| `@{selector}`   | 107 | `a`          | 298 |      ✓     |
+| Original        |     | Virtual      |     | Definition | References |
+| --------------- | --: | ------------ | --: | :--------: | :--------: |
+| `text-@{color}` |  15 | `"text-red"` | 104 |      ✓     |      ✓     |
+| `@{color}-text` |  52 | `"red-text"` | 204 |      ✓     |      ✓     |
+| `@{selector}`   | 107 | `a`          | 298 |      ✓     |      ✓     |

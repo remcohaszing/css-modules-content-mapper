@@ -18,9 +18,9 @@ export = styles
 
 ## Alias mappings
 
-| Original           |    | Virtual              |     | Definition |
-| ------------------ | -: | -------------------- | --: | :--------: |
-| `hyphenated-class` |  1 | `"hyphenated-class"` | 107 |      ✓     |
+| Original           |    | Virtual              |     | Definition | References |
+| ------------------ | -: | -------------------- | --: | :--------: | :--------: |
+| `hyphenated-class` |  1 | `"hyphenated-class"` | 107 |      ✓     |      ✓     |
 
 ## Option diagnostics
 

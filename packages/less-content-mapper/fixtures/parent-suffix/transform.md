@@ -44,8 +44,8 @@ export = styles
 
 ## Alias mappings
 
-| Original      |    | Virtual             |     | Definition |
-| ------------- | -: | ------------------- | --: | :--------: |
-| `block`       |  1 | `block`             | 197 |      ✓     |
-| `&__element`  | 30 | `block__element`    | 293 |      ✓     |
-| `&--modifier` | 68 | `"block--modifier"` | 398 |      ✓     |
+| Original      |    | Virtual             |     | Definition | References |
+| ------------- | -: | ------------------- | --: | :--------: | :--------: |
+| `block`       |  1 | `block`             | 197 |      ✓     |      ✓     |
+| `&__element`  | 30 | `block__element`    | 293 |      ✓     |      ✓     |
+| `&--modifier` | 68 | `"block--modifier"` | 398 |      ✓     |      ✓     |

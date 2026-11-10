@@ -693,7 +693,8 @@ export function startMapper(adapter) {
             original.offset,
             original.length,
             /** @satisfies {SpanMapKind.Alias} */ (2),
-            /** @satisfies {SpanMapFeature.Definition} */ (8)
+            /** @satisfies {SpanMapFeature.Definition} */ (8) |
+              /** @satisfies {SpanMapFeature.References} */ (64)
           ])
         }
         text += quoted

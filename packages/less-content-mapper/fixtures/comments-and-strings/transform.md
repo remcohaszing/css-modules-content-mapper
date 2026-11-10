@@ -38,8 +38,8 @@ export = styles
 
 ## Alias mappings
 
-| Original |    | Virtual  |     | Definition |
-| -------- | -: | -------- | --: | :--------: |
-| `icon`   | 17 | `icon`   | 110 |      ✓     |
-| `parent` | 73 | `parent` | 219 |      ✓     |
-| `child`  | 95 | `child`  | 312 |      ✓     |
+| Original |    | Virtual  |     | Definition | References |
+| -------- | -: | -------- | --: | :--------: | :--------: |
+| `icon`   | 17 | `icon`   | 110 |      ✓     |      ✓     |
+| `parent` | 73 | `parent` | 219 |      ✓     |      ✓     |
+| `child`  | 95 | `child`  | 312 |      ✓     |      ✓     |

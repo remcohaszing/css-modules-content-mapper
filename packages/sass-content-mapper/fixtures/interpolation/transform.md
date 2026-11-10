@@ -27,7 +27,7 @@ export = styles
 
 ## Alias mappings
 
-| Original         |    | Virtual        |     | Definition |
-| ---------------- | -: | -------------- | --: | :--------: |
-| `text-#{$color}` | 32 | `"text-red"`   | 111 |      ✓     |
-| `text-#{$color}` | 32 | `"text-green"` | 218 |      ✓     |
+| Original         |    | Virtual        |     | Definition | References |
+| ---------------- | -: | -------------- | --: | :--------: | :--------: |
+| `text-#{$color}` | 32 | `"text-red"`   | 111 |      ✓     |      ✓     |
+| `text-#{$color}` | 32 | `"text-green"` | 218 |      ✓     |      ✓     |

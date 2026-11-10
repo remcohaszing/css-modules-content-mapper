@@ -18,6 +18,6 @@ export = styles
 
 ## Alias mappings
 
-| Original |    | Virtual |    | Definition |
-| -------- | -: | ------- | -: | :--------: |
-| `app`    |  1 | `app`   | 93 |      ✓     |
+| Original |    | Virtual |    | Definition | References |
+| -------- | -: | ------- | -: | :--------: | :--------: |
+| `app`    |  1 | `app`   | 93 |      ✓     |      ✓     |

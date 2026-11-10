@@ -36,8 +36,8 @@ export = styles
 
 ## Alias mappings
 
-| Original |    | Virtual  |     | Definition |
-| -------- | -: | -------- | --: | :--------: |
-| `icon`   |  1 | `icon`   | 111 |      ✓     |
-| `parent` | 45 | `parent` | 200 |      ✓     |
-| `child`  | 57 | `child`  | 291 |      ✓     |
+| Original |    | Virtual  |     | Definition | References |
+| -------- | -: | -------- | --: | :--------: | :--------: |
+| `icon`   |  1 | `icon`   | 111 |      ✓     |      ✓     |
+| `parent` | 45 | `parent` | 200 |      ✓     |      ✓     |
+| `child`  | 57 | `child`  | 291 |      ✓     |      ✓     |

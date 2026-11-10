@@ -56,10 +56,10 @@ export = styles
 
 ## Alias mappings
 
-| Original          |     | Virtual        |     | Definition |
-| ----------------- | --: | -------------- | --: | :--------: |
-| `text-@{value}`   |  41 | `"text-red"`   | 110 |      ✓     |
-| `text-@{value}`   |  41 | `"text-green"` | 216 |      ✓     |
-| `column-@{value}` | 105 | `"column-1"`   | 336 |      ✓     |
-| `column-@{value}` | 105 | `"column-2"`   | 454 |      ✓     |
-| `a`               | 199 | `a`            | 585 |      ✓     |
+| Original          |     | Virtual        |     | Definition | References |
+| ----------------- | --: | -------------- | --: | :--------: | :--------: |
+| `text-@{value}`   |  41 | `"text-red"`   | 110 |      ✓     |      ✓     |
+| `text-@{value}`   |  41 | `"text-green"` | 216 |      ✓     |      ✓     |
+| `column-@{value}` | 105 | `"column-1"`   | 336 |      ✓     |      ✓     |
+| `column-@{value}` | 105 | `"column-2"`   | 454 |      ✓     |      ✓     |
+| `a`               | 199 | `a`            | 585 |      ✓     |      ✓     |

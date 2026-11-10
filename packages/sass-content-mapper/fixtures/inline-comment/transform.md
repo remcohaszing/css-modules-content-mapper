@@ -18,6 +18,6 @@ export = styles
 
 ## Alias mappings
 
-| Original |    | Virtual |    | Definition |
-| -------- | -: | ------- | -: | :--------: |
-| `red`    | 57 | `red`   | 95 |      ✓     |
+| Original |    | Virtual |    | Definition | References |
+| -------- | -: | ------- | -: | :--------: | :--------: |
+| `red`    | 57 | `red`   | 95 |      ✓     |      ✓     |
