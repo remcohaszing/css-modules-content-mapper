@@ -18,11 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
           # Disabled as recommended here:
           # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#publishing-to-npm-with-trusted-publisher-oidc
           package-manager-cache: false
-      - run: npm install
+      - run: npm ci
       - uses: changesets/action@v2
+        with:
+          version-script: npm run version-packages
+          publish-script: npm run publish-packages
