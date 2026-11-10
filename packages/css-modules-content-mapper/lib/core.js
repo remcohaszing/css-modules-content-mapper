@@ -41,6 +41,13 @@ const allowedLocalsConventions = /** @type {const} */ ([
 ])
 
 /**
+ * @template T
+ *   The type of the eventual value.
+ * @typedef {T | PromiseLike<T>} Promisable
+ *   A value or a primise that resolves to that value.
+ */
+
+/**
  * @typedef {typeof allowedLocalsConventions[number]} LocalsConvention
  */
 
@@ -120,10 +127,10 @@ const allowedLocalsConventions = /** @type {const} */ ([
  *   An adapter for a CSS modules preprocessor.
  * @property {string} diagnosticSource
  *   The source identifier displayed for content mapper produced diagnostics.
- * @property {(params: PreprocessParams<Options>) =>
- *   PreprocessResult | Promise<PreprocessResult>} [preprocess]
+ * @property {(params: PreprocessParams<Options>) => Promisable<PreprocessResult>} [preprocess]
  *   Compile the original content to CSS. If omitted, the content is treated as CSS.
- * @property {(options: Record<string, unknown>) => ValidateResult<Options>} [validateOptions]
+ * @property {(options: Record<string, unknown>) =>
+ *   Promisable<ValidateResult<Options>>} [validateOptions]
  *   Validate adapter-specific options from the `contentMappers` entry. TypeScript still opens the
  *   project if options are invalid, so the returned options are used instead of the original ones.
  * @property {() => void} [dispose]
@@ -529,10 +536,10 @@ export function startMapper(adapter) {
    *
    * @param {OpenProjectParams} params
    *   The params sent by TypeScript.
-   * @returns {OpenProjectResult}
+   * @returns {Promise<OpenProjectResult>}
    *   The result that TypeScript expects.
    */
-  function openProject({ configFileName, options = {}, projectHandle }) {
+  async function openProject({ configFileName, options = {}, projectHandle }) {
     const { localsConvention } = /** @type {CssContentMapperOptions} */ (options)
 
     /** @type {OptionDiagnostic[]} */
@@ -548,7 +555,7 @@ export function startMapper(adapter) {
       })
     }
 
-    const validated = adapter.validateOptions?.(options)
+    const validated = await adapter.validateOptions?.(options)
     if (validated) {
       optionDiagnostics.push(...validated.diagnostics)
     }

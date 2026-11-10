@@ -1,6 +1,5 @@
 /**
  * @import { OptionDiagnostic } from 'content-mapper-test-utils'
- * @import * as Less from 'less'
  */
 
 import { dirname, relative } from 'node:path'
@@ -8,35 +7,6 @@ import { dirname, relative } from 'node:path'
 import { startMapper } from 'css-modules-content-mapper'
 
 import { syntax } from './syntax.js'
-
-/**
- * @typedef LoadedLess
- * @property {LessStatic} less
- *   The Less API.
- * @property {LessStatic['render']} compiler
- *   The compiler to use.
- */
-
-/**
- * Load the installed Less package.
- *
- * @returns {Promise<LoadedLess | undefined>}
- *   The Less API and the compiler to use, or undefined if `less` isn’t installed.
- */
-async function loadLess() {
-  try {
-    const { default: lessPackage } = await import('less')
-
-    return {
-      less: lessPackage,
-      compiler: lessPackage.render
-    }
-  } catch {
-    // `less` isn’t installed.
-  }
-}
-
-const { compiler, less } = (await loadLess()) ?? {}
 
 const missingLessMessage = "'less' must be installed."
 
@@ -208,11 +178,13 @@ const innermostSelectorPlugin = {
 startMapper({
   diagnosticSource: 'Less',
 
-  validateOptions() {
+  async validateOptions() {
     /** @type {OptionDiagnostic[]} */
     const diagnostics = []
 
-    if (!less) {
+    try {
+      await import('less')
+    } catch {
       diagnostics.push({ path: [], messageText: missingLessMessage, code: 3002 })
     }
 
@@ -220,14 +192,19 @@ startMapper({
   },
 
   async preprocess({ content, fileName }) {
-    if (!less || !compiler) {
+    /** @type {LessStatic | undefined} */
+    let less
+
+    try {
+      ;({ default: less } = await import('less'))
+    } catch {
       return { diagnostics: [{ messageText: missingLessMessage, start: 0, length: 0, code: 4002 }] }
     }
 
     try {
       // Imports are resolved the way Less itself does: relative to the importing file, then through
       // Node’s module resolution for packages.
-      const result = await compiler(content, {
+      const result = await less.render(content, {
         filename: fileName,
         plugins: [innermostSelectorPlugin],
         sourceMap: {}
