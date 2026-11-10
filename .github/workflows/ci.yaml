@@ -6,6 +6,8 @@ on:
     branches: [main]
     tags: ['*']
 
+permissions: {}
+
 jobs:
   eslint:
     runs-on: ubuntu-latest
