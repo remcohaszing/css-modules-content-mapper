@@ -1,6 +1,6 @@
 {
   "name": "sass-content-mapper",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "TypeScript content mapper for Sass CSS modules",
   "keywords": [
     "content-mapper",
@@ -40,7 +40,7 @@
     "test": "node --test"
   },
   "dependencies": {
-    "css-modules-content-mapper": "^0.2.0"
+    "css-modules-content-mapper": "^0.3.0"
   },
   "devDependencies": {
     "@types/node": "^26.0.0",
