@@ -5,28 +5,81 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
+permissions: {}
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
 
 jobs:
-  version:
+  select-mode:
     runs-on: ubuntu-latest
+    outputs:
+      mode: ${{steps.select-mode.outputs.mode}}
+      publish-plan-artifact-id: ${{steps.select-mode.outputs.publish-plan-artifact-id}}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+      - run: npm install
+      - id: select-mode
+        uses: changesets/action/select-mode@v2
+
+  version:
+    if: needs.select-mode.outputs.mode == 'version'
+    needs: select-mode
+    runs-on: ubuntu-latest
+    outputs:
+      version-dir-artifact-id: ${{steps.version.outputs.version-dir-artifact-id}}
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          package-manager-cache: false
+      - run: npm install
+      - id: version
+        uses: changesets/action/version@v2
+        with:
+          script: npm run changeset-version
+
+  pack:
+    if: needs.select-mode.outputs.mode == 'publish'
+    needs: select-mode
+    runs-on: ubuntu-latest
+    outputs:
+      pack-dir-artifact-id: ${{steps.pack.outputs.pack-dir-artifact-id}}
+    steps:
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-          # Disabled as recommended here:
-          # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#publishing-to-npm-with-trusted-publisher-oidc
           package-manager-cache: false
-      - run: npm ci
-      - uses: changesets/action@v2
+      - run: npm install
+      - id: pack
+        uses: changesets/action/pack@v2
         with:
-          version-script: npm run changeset-version
+          publish-plan-artifact-id: ${{needs.select-mode.outputs.publish-plan-artifact-id}}
+
+  publish:
+    needs: pack
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          package-manager-cache: false # recommended: avoid cache poisoning
+      - run: npm install
+      - uses: changesets/action/publish@v2
+        with:
+          pack-dir-artifact-id: ${{needs.pack.outputs.pack-dir-artifact-id}}
