@@ -4,6 +4,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
+      "disableThanks": true,
       "repo": "remcohaszing/css-modules-content-mapper"
     }
   ]
