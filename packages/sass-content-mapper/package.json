@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.0.0",
-    "content-mapper-test-utils": "^0.0.1",
+    "content-mapper-test-utils": "^0.0.2",
     "sass": "1.71.1",
     "sass-embedded": "1.71.1",
     "snapshot-fixtures": "^1.0.0",

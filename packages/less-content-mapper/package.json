@@ -44,7 +44,7 @@
   "devDependencies": {
     "@types/less": "^3.0.0",
     "@types/node": "^26.0.0",
-    "content-mapper-test-utils": "^0.0.1",
+    "content-mapper-test-utils": "^0.0.2",
     "less": "4.2.0",
     "snapshot-fixtures": "^1.0.0",
     "typescript": "^6.0.0",
