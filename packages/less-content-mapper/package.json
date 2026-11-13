@@ -1,6 +1,6 @@
 {
   "name": "less-content-mapper",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "TypeScript content mapper for Less CSS modules",
   "keywords": [
     "content-mapper",
@@ -39,7 +39,7 @@
     "test": "node --test"
   },
   "dependencies": {
-    "css-modules-content-mapper": "^0.2.0"
+    "css-modules-content-mapper": "^0.3.0"
   },
   "devDependencies": {
     "@types/less": "^3.0.0",
