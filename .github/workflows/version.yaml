@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-      - run: npm install
+      - run: npm ci
       - id: select-mode
         uses: changesets/action/select-mode@v2
 
@@ -38,12 +38,11 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
           package-manager-cache: false
-      - run: npm install
+      - run: npm ci
       - id: version
         uses: changesets/action/version@v2
         with:
@@ -61,7 +60,7 @@ jobs:
         with:
           node-version-file: package.json
           package-manager-cache: false
-      - run: npm install
+      - run: npm ci
       - id: pack
         uses: changesets/action/pack@v2
         with:
@@ -78,8 +77,9 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-          package-manager-cache: false # recommended: avoid cache poisoning
-      - run: npm install
+          package-manager-cache: false
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
       - uses: changesets/action/publish@v2
         with:
           pack-dir-artifact-id: ${{needs.pack.outputs.pack-dir-artifact-id}}
