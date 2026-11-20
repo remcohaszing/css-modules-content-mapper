@@ -39,5 +39,5 @@ test('keeps the last successful result when compilation fails', async () => {
   // A new project doesn’t share the results of a previous one.
   await using second = await contentMapper.openProject(fixture)
   const afterReopen = await second.transform(fileName, broken)
-  assert.equal(afterReopen.text, 'declare const styles: {}\n\nexport = styles\n')
+  assert.equal(afterReopen.text, 'declare const styles: {}\n\nexport default styles\n')
 })

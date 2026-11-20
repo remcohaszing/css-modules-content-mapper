@@ -40,8 +40,8 @@ test('reports an invalid source map as a diagnostic', async () => {
 
   const { diagnostics, ...result } = await project.transform('/test.css', '.a {}')
   assert.deepEqual(result, {
-    extension: '.cts',
-    text: 'declare const styles: {}\n\nexport = styles\n',
+    extension: '.ts',
+    text: 'declare const styles: {}\n\nexport default styles\n',
     mappings: []
   })
 
@@ -70,8 +70,8 @@ test('reports an error thrown by the preprocessor as a diagnostic', async () => 
 
   const result = await project.transform('/test.css', '.a {}')
   assert.deepEqual(result, {
-    extension: '.cts',
-    text: 'declare const styles: {}\n\nexport = styles\n',
+    extension: '.ts',
+    text: 'declare const styles: {}\n\nexport default styles\n',
     mappings: [],
     diagnostics: [
       {

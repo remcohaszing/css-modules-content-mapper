@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```less
@@ -12,12 +12,25 @@ declare const styles: {
 readonly a: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```less
+ * .a {
+ *   width: answer();
+ * }
+ * ```
+ */
+declare const a: string
+
+export { a as a, }
+
 
 ````
 
 ## Alias mappings
 
-| Original |     | Virtual |    | Definition | References |
-| -------- | --: | ------- | -: | :--------: | :--------: |
-| `a`      | 121 | `a`     | 94 |      ✓     |      ✓     |
+| Original |     | Virtual |     | Definition | References |
+| -------- | --: | ------- | --: | :--------: | :--------: |
+| `a`      | 121 | `a`     |  94 |      ✓     |      ✓     |
+| `a`      | 121 | `a`     | 205 |      ✓     |      ✓     |

@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  *
@@ -27,7 +27,37 @@ readonly a: string
 readonly b: string
 }
 
-export = styles
+export default styles
+
+/**
+ *
+ * Comment for `a`.
+ * ```scss
+ * .a {
+ *   color: #ff0000;
+ *   .b {
+ *     color: green;
+ *   }
+ * }
+ * ```
+ */
+declare const a: string
+
+export { a as a, }
+
+
+/**
+ * `b` comment
+ * ```scss
+ *   .b {
+ *     color: green;
+ *   }
+ * ```
+ */
+declare const b: string
+
+export { b as b, }
+
 
 ````
 
@@ -37,3 +67,5 @@ export = styles
 | -------- | -: | ------- | --: | :--------: | :--------: |
 | `a`      | 29 | `a`     | 154 |      ✓     |      ✓     |
 | `b`      | 76 | `b`     | 253 |      ✓     |      ✓     |
+| `a`      | 29 | `a`     | 424 |      ✓     |      ✓     |
+| `b`      | 76 | `b`     | 549 |      ✓     |      ✓     |

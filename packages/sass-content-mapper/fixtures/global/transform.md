@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```scss
@@ -30,7 +30,43 @@ readonly e: string
 readonly f: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```scss
+ *   .b {
+ *     color: #ff0000;
+ *   }
+ * ```
+ */
+declare const b: string
+
+export { b as b, }
+
+
+/**
+ * ```scss
+ *   .f {
+ *     color: #ff0000;
+ *   }
+ * ```
+ */
+declare const e: string
+
+export { e as e, }
+
+
+/**
+ * ```scss
+ *   .f {
+ *     color: #ff0000;
+ *   }
+ * ```
+ */
+declare const f: string
+
+export { f as f, }
+
 
 ````
 
@@ -41,3 +77,6 @@ export = styles
 | `b`      |  17 | `b`     |  99 |      ✓     |      ✓     |
 | `e`      | 103 | `e`     | 185 |      ✓     |      ✓     |
 | `f`      | 111 | `f`     | 271 |      ✓     |      ✓     |
+| `b`      |  17 | `b`     | 387 |      ✓     |      ✓     |
+| `e`      | 103 | `e`     | 499 |      ✓     |      ✓     |
+| `f`      | 111 | `f`     | 611 |      ✓     |      ✓     |

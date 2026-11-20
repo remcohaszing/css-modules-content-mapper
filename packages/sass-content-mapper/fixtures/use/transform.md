@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  */
@@ -16,7 +16,26 @@ readonly partial: string
 readonly local: string
 }
 
-export = styles
+export default styles
+
+/**
+ */
+declare const partial: string
+
+export { partial as partial, }
+
+
+/**
+ * ```scss
+ * .local {
+ *   color: partial.$red;
+ * }
+ * ```
+ */
+declare const local: string
+
+export { local as local, }
+
 
 ````
 
@@ -25,3 +44,4 @@ export = styles
 | Original |    | Virtual |     | Definition | References |
 | -------- | -: | ------- | --: | :--------: | :--------: |
 | `local`  | 84 | `local` | 136 |      ✓     |      ✓     |
+| `local`  | 84 | `local` | 331 |      ✓     |      ✓     |
