@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```less
@@ -12,7 +12,19 @@ declare const styles: {
 readonly "b--c": string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```less
+ *   &--c {
+ *     color: #ff0000;
+ *   }
+ * ```
+ */
+declare const $0: string
+
+export { $0 as "b--c", }
+
 
 ````
 
@@ -21,3 +33,4 @@ export = styles
 | Original |    | Virtual  |     | Definition | References |
 | -------- | -: | -------- | --: | :--------: | :--------: |
 | `&--c`   | 98 | `"b--c"` | 101 |      ✓     |      ✓     |
+| `&--c`   | 98 | `$0`     | 224 |      ✓     |      ✓     |

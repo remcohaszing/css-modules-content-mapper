@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```scss
@@ -38,7 +38,51 @@ readonly block__element: string
 readonly "block--modifier": string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```scss
+ * .block {
+ *   color: #ff0000;
+ * 
+ *   &__element {
+ *     color: green;
+ *   }
+ * 
+ *   &--modifier {
+ *     color: blue;
+ *   }
+ * }
+ * ```
+ */
+declare const block: string
+
+export { block as block, }
+
+
+/**
+ * ```scss
+ *   &__element {
+ *     color: green;
+ *   }
+ * ```
+ */
+declare const block__element: string
+
+export { block__element as block__element, }
+
+
+/**
+ * ```scss
+ *   &--modifier {
+ *     color: blue;
+ *   }
+ * ```
+ */
+declare const $0: string
+
+export { $0 as "block--modifier", }
+
 
 ````
 
@@ -49,3 +93,6 @@ export = styles
 | `block`       |  1 | `block`             | 197 |      ✓     |      ✓     |
 | `&__element`  | 30 | `block__element`    | 293 |      ✓     |      ✓     |
 | `&--modifier` | 68 | `"block--modifier"` | 398 |      ✓     |      ✓     |
+| `block`       |  1 | `block`             | 628 |      ✓     |      ✓     |
+| `&__element`  | 30 | `block__element`    | 758 |      ✓     |      ✓     |
+| `&--modifier` | 68 | `$0`                | 915 |      ✓     |      ✓     |

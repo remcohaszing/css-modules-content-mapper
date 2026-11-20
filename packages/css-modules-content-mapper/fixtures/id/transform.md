@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```css
@@ -12,12 +12,25 @@ declare const styles: {
 readonly app: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```css
+ * #app {
+ *   height: 100px;
+ * }
+ * ```
+ */
+declare const app: string
+
+export { app as app, }
+
 
 ````
 
 ## Alias mappings
 
-| Original |    | Virtual |    | Definition | References |
-| -------- | -: | ------- | -: | :--------: | :--------: |
-| `app`    |  1 | `app`   | 93 |      ✓     |      ✓     |
+| Original |    | Virtual |     | Definition | References |
+| -------- | -: | ------- | --: | :--------: | :--------: |
+| `app`    |  1 | `app`   |  93 |      ✓     |      ✓     |
+| `app`    |  1 | `app`   | 205 |      ✓     |      ✓     |

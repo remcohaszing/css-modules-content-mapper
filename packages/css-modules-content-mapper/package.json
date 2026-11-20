@@ -49,6 +49,7 @@
     "lodash.camelcase": "^4.0.0",
     "postcss-safe-parser": "^7.0.0",
     "postcss-selector-parser": "^7.0.0",
+    "reserved-identifiers": "^1.0.0",
     "vscode-jsonrpc": "^10.0.0"
   },
   "devDependencies": {

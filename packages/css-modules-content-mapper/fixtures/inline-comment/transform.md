@@ -1,8 +1,8 @@
 ## Text
 
-```cts
+```ts
 declare const styles: {}
 
-export = styles
+export default styles
 
 ```

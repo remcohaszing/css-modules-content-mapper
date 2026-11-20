@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```less
@@ -32,7 +32,45 @@ readonly parent: string
 readonly child: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```less
+ * .icon::before {
+ *   content: '.parent {';
+ * }
+ * ```
+ */
+declare const icon: string
+
+export { icon as icon, }
+
+
+/**
+ * ```less
+ * .parent {
+ *   .child {
+ *     content: '}';
+ *   }
+ * }
+ * ```
+ */
+declare const parent: string
+
+export { parent as parent, }
+
+
+/**
+ * ```less
+ *   .child {
+ *     content: '}';
+ *   }
+ * ```
+ */
+declare const child: string
+
+export { child as child, }
+
 
 ````
 
@@ -43,3 +81,6 @@ export = styles
 | `icon`   | 17 | `icon`   | 110 |      ✓     |      ✓     |
 | `parent` | 73 | `parent` | 219 |      ✓     |      ✓     |
 | `child`  | 95 | `child`  | 312 |      ✓     |      ✓     |
+| `icon`   | 17 | `icon`   | 443 |      ✓     |      ✓     |
+| `parent` | 73 | `parent` | 584 |      ✓     |      ✓     |
+| `child`  | 95 | `child`  | 713 |      ✓     |      ✓     |

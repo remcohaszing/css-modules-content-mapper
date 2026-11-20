@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```scss
@@ -21,7 +21,31 @@ readonly "text-red": string
 readonly "text-green": string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```scss
+ *   .text-#{$color} {
+ *     color: $color;
+ *   }
+ * ```
+ */
+declare const $0: string
+
+export { $0 as "text-red", }
+
+
+/**
+ * ```scss
+ *   .text-#{$color} {
+ *     color: $color;
+ *   }
+ * ```
+ */
+declare const $1: string
+
+export { $1 as "text-green", }
+
 
 ````
 
@@ -31,3 +55,5 @@ export = styles
 | ---------------- | -: | -------------- | --: | :--------: | :--------: |
 | `text-#{$color}` | 32 | `"text-red"`   | 111 |      ✓     |      ✓     |
 | `text-#{$color}` | 32 | `"text-green"` | 218 |      ✓     |      ✓     |
+| `text-#{$color}` | 32 | `$0`           | 357 |      ✓     |      ✓     |
+| `text-#{$color}` | 32 | `$1`           | 492 |      ✓     |      ✓     |
