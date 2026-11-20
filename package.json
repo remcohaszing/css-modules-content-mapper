@@ -34,6 +34,7 @@
     "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.0",
     "@remcohaszing/eslint": "^14.0.0",
+    "@typescript/native": "npm:typescript@next",
     "prettier": "^3.0.0",
     "remark-cli": "^12.0.0",
     "remark-preset-remcohaszing": "^3.0.0",
