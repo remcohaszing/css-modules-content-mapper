@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "noEmit": true,
+    "verbatimModuleSyntax": true
+  },
+  "contentMappers": [
+    {
+      "package": "css-modules-content-mapper",
+      "extensions": [".css"],
+      "options": {
+        "localsConvention": "camelCase"
+      }
+    }
+  ]
+}
