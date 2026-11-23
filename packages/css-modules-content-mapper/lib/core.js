@@ -33,6 +33,7 @@ import {
 export { createBraceSyntax, isInLineComment } from './syntax.js'
 
 const reservedIdentifiers = createReservedIdentifiers()
+reservedIdentifiers.add('styles')
 
 const allowedLocalsConventions = /** @type {const} */ ([
   'camelCase',
@@ -708,12 +709,17 @@ export function startMapper(adapter) {
     text += '}\n\nexport default styles\n'
 
     let identifierCounter = 0
+    const exportedNames = new Set(['default'])
     for (const [value, { doc, localNames, original }] of data) {
       /** @type {string} */
       let identifier
       if (isIdentifierName(value) && !reservedIdentifiers.has(value)) {
         identifier = value
       } else {
+        // Skip `$N` names if already declared in the stylesheet, such as `.\$0`.
+        while (data.has(`$${identifierCounter}`)) {
+          identifierCounter += 1
+        }
         identifier = `$${identifierCounter}`
         identifierCounter += 1
       }
@@ -734,6 +740,10 @@ export function startMapper(adapter) {
       text += identifier
       text += ': string\n\nexport { '
       for (const localName of localNames) {
+        if (exportedNames.has(localName)) {
+          continue
+        }
+        exportedNames.add(localName)
         const quoted = isIdentifierName(localName) ? localName : JSON.stringify(localName)
         text += identifier
         text += ' as '

@@ -28,7 +28,8 @@
   },
   "allowScripts": {
     "@parcel/watcher": false,
-    "unrs-resolver": false
+    "unrs-resolver": false,
+    "fsevents": false
   },
   "devDependencies": {
     "@changesets/changelog-github": "^1.0.0",
