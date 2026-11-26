@@ -744,10 +744,12 @@ export function startMapper(adapter) {
           continue
         }
         exportedNames.add(localName)
-        const quoted = isIdentifierName(localName) ? localName : JSON.stringify(localName)
         text += identifier
-        text += ' as '
-        text += quoted
+        if (identifier !== localName) {
+          const quoted = isIdentifierName(localName) ? localName : JSON.stringify(localName)
+          text += ' as '
+          text += quoted
+        }
         text += ', '
       }
       text += '}\n\n'
