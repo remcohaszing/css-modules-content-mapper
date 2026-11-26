@@ -1,5 +1,18 @@
 # less-content-mapper
 
+## 0.2.0
+
+### Minor Changes
+
+- [`9caf4c8`](https://github.com/remcohaszing/css-modules-content-mapper/commit/9caf4c815559064ee61679d9c23e0cbcbdabc217) -
+  Use ESM-style exports. CJS-style exports don’t work well with content mappers in many situations.
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`9caf4c8`](https://github.com/remcohaszing/css-modules-content-mapper/commit/9caf4c815559064ee61679d9c23e0cbcbdabc217)]:
+  - css-modules-content-mapper\@0.4.0
+
 ## 0.1.0
 
 ### Minor Changes
