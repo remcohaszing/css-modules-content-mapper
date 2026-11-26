@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```less
@@ -30,7 +30,43 @@ readonly "red-text": string
 readonly a: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```less
+ * .text-@{color} {
+ *   color: @color;
+ * }
+ * ```
+ */
+declare const $0: string
+
+export { $0 as "text-red", }
+
+
+/**
+ * ```less
+ * .@{color}-text {
+ *   color: @color;
+ * }
+ * ```
+ */
+declare const $1: string
+
+export { $1 as "red-text", }
+
+
+/**
+ * ```less
+ * @{selector} {
+ *   color: red;
+ * }
+ * ```
+ */
+declare const a: string
+
+export { a, }
+
 
 ````
 
@@ -41,3 +77,6 @@ export = styles
 | `text-@{color}` |  15 | `"text-red"` | 104 |      ✓     |      ✓     |
 | `@{color}-text` |  52 | `"red-text"` | 204 |      ✓     |      ✓     |
 | `@{selector}`   | 107 | `a`          | 298 |      ✓     |      ✓     |
+| `text-@{color}` |  15 | `$0`         | 419 |      ✓     |      ✓     |
+| `@{color}-text` |  52 | `$1`         | 547 |      ✓     |      ✓     |
+| `@{selector}`   | 107 | `a`          | 669 |      ✓     |      ✓     |

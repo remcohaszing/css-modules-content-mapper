@@ -23,6 +23,7 @@ import { name as isIdentifierName } from 'estree-util-is-identifier-name'
 import camelCase from 'lodash.camelcase'
 import safe from 'postcss-safe-parser'
 import parser from 'postcss-selector-parser'
+import createReservedIdentifiers from 'reserved-identifiers'
 import {
   createMessageConnection,
   StreamMessageReader,
@@ -30,6 +31,9 @@ import {
 } from 'vscode-jsonrpc/node'
 
 export { createBraceSyntax, isInLineComment } from './syntax.js'
+
+const reservedIdentifiers = createReservedIdentifiers()
+reservedIdentifiers.add('styles')
 
 const allowedLocalsConventions = /** @type {const} */ ([
   'camelCase',
@@ -702,7 +706,54 @@ export function startMapper(adapter) {
       }
     }
 
-    text += '}\n\nexport = styles\n'
+    text += '}\n\nexport default styles\n'
+
+    let identifierCounter = 0
+    const exportedNames = new Set(['default'])
+    for (const [value, { doc, localNames, original }] of data) {
+      /** @type {string} */
+      let identifier
+      if (isIdentifierName(value) && !reservedIdentifiers.has(value)) {
+        identifier = value
+      } else {
+        // Skip `$N` names if already declared in the stylesheet, such as `.\$0`.
+        while (data.has(`$${identifierCounter}`)) {
+          identifierCounter += 1
+        }
+        identifier = `$${identifierCounter}`
+        identifierCounter += 1
+      }
+      text += '\n/**\n'
+      text += doc
+      text += ' */\ndeclare const '
+      if (original != null) {
+        mappings.push([
+          text.length,
+          identifier.length,
+          original.offset,
+          original.length,
+          /** @satisfies {SpanMapKind.Alias} */ (2),
+          /** @satisfies {SpanMapFeature.Definition} */ (8) |
+            /** @satisfies {SpanMapFeature.References} */ (64)
+        ])
+      }
+      text += identifier
+      text += ': string\n\nexport { '
+      for (const localName of localNames) {
+        if (exportedNames.has(localName)) {
+          continue
+        }
+        exportedNames.add(localName)
+        text += identifier
+        if (identifier !== localName) {
+          const quoted = isIdentifierName(localName) ? localName : JSON.stringify(localName)
+          text += ' as '
+          text += quoted
+        }
+        text += ', '
+      }
+      text += '}\n\n'
+    }
 
     return { text, mappings }
   }
@@ -723,7 +774,7 @@ export function startMapper(adapter) {
 
     if (!adapter.preprocess) {
       return {
-        extension: '.cts',
+        extension: '.ts',
         ...generate(createCssSource(content), ext, fileName, project)
       }
     }
@@ -752,7 +803,7 @@ export function startMapper(adapter) {
           project
         )
         project.lastResults.set(fileName, text)
-        return { extension: '.cts', text, mappings }
+        return { extension: '.ts', text, mappings }
       } catch (error) {
         // The file compiled, but its types can’t be generated, for example because of an invalid
         // source map. This shouldn’t fail the TypeScript request either.
@@ -765,7 +816,7 @@ export function startMapper(adapter) {
     // Keep the last known exports while the file can’t be compiled, for example while typing. The
     // mappings are dropped, because they point at offsets in outdated content.
     return {
-      extension: '.cts',
+      extension: '.ts',
       text:
         project.lastResults.get(fileName) ??
         generate(createCssSource(''), ext, fileName, project).text,

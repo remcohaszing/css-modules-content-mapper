@@ -80,8 +80,8 @@ test('reports a diagnostic if less is not installed', async () => {
 
   const transform = await project.transform(fileName, '.a {\n  color: red;\n}\n')
   assert.deepEqual(transform, {
-    extension: '.cts',
-    text: 'declare const styles: {}\n\nexport = styles\n',
+    extension: '.ts',
+    text: 'declare const styles: {}\n\nexport default styles\n',
     mappings: [],
     diagnostics: [{ messageText: "'less' must be installed.", start: 0, length: 0, code: 4002 }]
   })
@@ -119,6 +119,6 @@ test('maps classes in files with CRLF line endings', async () => {
   const { mappings } = await project.transform(fileName, content)
   assert.deepEqual(
     mappings?.map(([, , start, length]) => content.slice(start, start + length)),
-    ['a', 'b']
+    ['a', 'b', 'a', 'b']
   )
 })

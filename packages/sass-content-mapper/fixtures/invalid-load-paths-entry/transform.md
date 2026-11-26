@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  */
@@ -16,7 +16,26 @@ readonly library: string
 readonly local: string
 }
 
-export = styles
+export default styles
+
+/**
+ */
+declare const library: string
+
+export { library, }
+
+
+/**
+ * ```scss
+ * .local {
+ *   color: #ff0000;
+ * }
+ * ```
+ */
+declare const local: string
+
+export { local, }
+
 
 ````
 
@@ -25,6 +44,7 @@ export = styles
 | Original |     | Virtual |     | Definition | References |
 | -------- | --: | ------- | --: | :--------: | :--------: |
 | `local`  | 112 | `local` | 131 |      ✓     |      ✓     |
+| `local`  | 112 | `local` | 310 |      ✓     |      ✓     |
 
 ## Option diagnostics
 

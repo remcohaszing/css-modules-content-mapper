@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```less
@@ -21,7 +21,19 @@ readonly "hyphenated-class--modifier": string
 readonly hyphenatedClassModifier: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```less
+ *   &--modifier {
+ *     color: #ff0000;
+ *   }
+ * ```
+ */
+declare const $0: string
+
+export { $0 as "hyphenated-class--modifier", $0 as hyphenatedClassModifier, }
+
 
 ````
 
@@ -31,3 +43,4 @@ export = styles
 | ------------- | -: | ------------------------------ | --: | :--------: | :--------: |
 | `&--modifier` | 22 | `"hyphenated-class--modifier"` | 108 |      ✓     |      ✓     |
 | `&--modifier` | 22 | `hyphenatedClassModifier`      | 230 |      ✓     |      ✓     |
+| `&--modifier` | 22 | `$0`                           | 377 |      ✓     |      ✓     |

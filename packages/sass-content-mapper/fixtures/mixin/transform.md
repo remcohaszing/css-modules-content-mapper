@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```scss
@@ -20,7 +20,33 @@ readonly parent: string
 readonly child: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```scss
+ * .local {
+ *   @include mixins.red;
+ * }
+ * ```
+ */
+declare const local: string
+
+export { local, }
+
+
+/**
+ */
+declare const parent: string
+
+export { parent, }
+
+
+/**
+ */
+declare const child: string
+
+export { child, }
+
 
 ````
 
@@ -30,3 +56,5 @@ export = styles
 | -------- | --: | -------- | --: | :--------: | :--------: |
 | `local`  |  17 | `local`  | 102 |      ✓     |      ✓     |
 | `parent` | 116 | `parent` | 134 |      ✓     |      ✓     |
+| `local`  |  17 | `local`  | 290 |      ✓     |      ✓     |
+| `parent` | 116 | `parent` | 347 |      ✓     |      ✓     |

@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```less
@@ -50,7 +50,66 @@ readonly c: string
 readonly d: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```less
+ * .a {
+ *   color: red;
+ * }
+ * ```
+ */
+declare const a: string
+
+export { a, }
+
+
+/**
+ * ```less
+ * .a {
+ *   color: red;
+ * }
+ * ```
+ * ```less
+ * .b {
+ *   &:extend(.a);
+ *   margin: 0;
+ * }
+ * ```
+ */
+declare const b: string
+
+export { b, }
+
+
+/**
+ * ```less
+ * .a {
+ *   color: red;
+ * }
+ * ```
+ * ```less
+ * .c:extend(.a all) {
+ *   margin: 0;
+ * }
+ * ```
+ */
+declare const c: string
+
+export { c, }
+
+
+/**
+ * ```less
+ * .a {
+ *   color: red;
+ * }
+ * ```
+ */
+declare const d: string
+
+export { d, }
+
 
 ````
 
@@ -62,3 +121,7 @@ export = styles
 | `b`      |  23 | `b`     | 231 |      ✓     |      ✓     |
 | `c`      |  60 | `c`     | 369 |      ✓     |      ✓     |
 | `d`      | 167 | `d`     | 445 |      ✓     |      ✓     |
+| `a`      |   1 | `a`     | 551 |      ✓     |      ✓     |
+| `b`      |  23 | `b`     | 714 |      ✓     |      ✓     |
+| `c`      |  60 | `c`     | 873 |      ✓     |      ✓     |
+| `d`      | 167 | `d`     | 970 |      ✓     |      ✓     |

@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```css
@@ -12,7 +12,19 @@ declare const styles: {
 readonly doc: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```css
+ * .doc::after {
+ *   content: '*​/';
+ * }
+ * ```
+ */
+declare const doc: string
+
+export { doc, }
+
 
 ````
 
@@ -21,3 +33,4 @@ export = styles
 | Original |    | Virtual |     | Definition | References |
 | -------- | -: | ------- | --: | :--------: | :--------: |
 | `doc`    |  1 | `doc`   | 101 |      ✓     |      ✓     |
+| `doc`    |  1 | `doc`   | 221 |      ✓     |      ✓     |

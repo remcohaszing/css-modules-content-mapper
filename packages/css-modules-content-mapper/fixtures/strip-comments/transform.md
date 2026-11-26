@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```css
@@ -12,7 +12,19 @@ declare const styles: {
 readonly warning: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```css
+ * .warning {
+ *   background: orange;
+ * }
+ * ```
+ */
+declare const warning: string
+
+export { warning, }
+
 
 ````
 
@@ -21,3 +33,4 @@ export = styles
 | Original  |    | Virtual   |     | Definition | References |
 | --------- | -: | --------- | --: | :--------: | :--------: |
 | `warning` |  1 | `warning` | 102 |      ✓     |      ✓     |
+| `warning` |  1 | `warning` | 227 |      ✓     |      ✓     |

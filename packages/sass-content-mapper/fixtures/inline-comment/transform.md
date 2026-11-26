@@ -1,6 +1,6 @@
 ## Text
 
-````cts
+````ts
 declare const styles: {
 /**
  * ```scss
@@ -12,12 +12,25 @@ declare const styles: {
 readonly red: string
 }
 
-export = styles
+export default styles
+
+/**
+ * ```scss
+ * .red {
+ *   color: #ff0000;
+ * }
+ * ```
+ */
+declare const red: string
+
+export { red, }
+
 
 ````
 
 ## Alias mappings
 
-| Original |    | Virtual |    | Definition | References |
-| -------- | -: | ------- | -: | :--------: | :--------: |
-| `red`    | 57 | `red`   | 95 |      ✓     |      ✓     |
+| Original |    | Virtual |     | Definition | References |
+| -------- | -: | ------- | --: | :--------: | :--------: |
+| `red`    | 57 | `red`   |  95 |      ✓     |      ✓     |
+| `red`    | 57 | `red`   | 209 |      ✓     |      ✓     |
