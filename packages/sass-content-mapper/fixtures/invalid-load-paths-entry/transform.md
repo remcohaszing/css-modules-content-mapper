@@ -22,7 +22,7 @@ export default styles
  */
 declare const library: string
 
-export { library as library, }
+export { library, }
 
 
 /**
@@ -34,7 +34,7 @@ export { library as library, }
  */
 declare const local: string
 
-export { local as local, }
+export { local, }
 
 
 ````
@@ -44,7 +44,7 @@ export { local as local, }
 | Original |     | Virtual |     | Definition | References |
 | -------- | --: | ------- | --: | :--------: | :--------: |
 | `local`  | 112 | `local` | 131 |      ✓     |      ✓     |
-| `local`  | 112 | `local` | 321 |      ✓     |      ✓     |
+| `local`  | 112 | `local` | 310 |      ✓     |      ✓     |
 
 ## Option diagnostics
 

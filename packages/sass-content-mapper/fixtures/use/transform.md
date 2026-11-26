@@ -22,7 +22,7 @@ export default styles
  */
 declare const partial: string
 
-export { partial as partial, }
+export { partial, }
 
 
 /**
@@ -34,7 +34,7 @@ export { partial as partial, }
  */
 declare const local: string
 
-export { local as local, }
+export { local, }
 
 
 ````
@@ -44,4 +44,4 @@ export { local as local, }
 | Original |    | Virtual |     | Definition | References |
 | -------- | -: | ------- | --: | :--------: | :--------: |
 | `local`  | 84 | `local` | 136 |      ✓     |      ✓     |
-| `local`  | 84 | `local` | 331 |      ✓     |      ✓     |
+| `local`  | 84 | `local` | 320 |      ✓     |      ✓     |

@@ -119,6 +119,6 @@ test('maps classes in files with CRLF line endings', async () => {
   const { mappings } = await project.transform(fileName, content)
   assert.deepEqual(
     mappings?.map(([, , start, length]) => content.slice(start, start + length)),
-    ['a', 'b']
+    ['a', 'b', 'a', 'b']
   )
 })

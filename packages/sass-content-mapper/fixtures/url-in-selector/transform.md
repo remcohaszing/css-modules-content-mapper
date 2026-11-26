@@ -32,7 +32,7 @@ export default styles
  */
 declare const parent: string
 
-export { parent as parent, }
+export { parent, }
 
 
 /**
@@ -44,7 +44,7 @@ export { parent as parent, }
  */
 declare const child: string
 
-export { child as child, }
+export { child, }
 
 
 ````
@@ -56,4 +56,4 @@ export { child as child, }
 | `parent` | 32 | `parent` |  99 |      ✓     |      ✓     |
 | `child`  | 44 | `child`  | 190 |      ✓     |      ✓     |
 | `parent` | 32 | `parent` | 310 |      ✓     |      ✓     |
-| `child`  | 44 | `child`  | 437 |      ✓     |      ✓     |
+| `child`  | 44 | `child`  | 427 |      ✓     |      ✓     |

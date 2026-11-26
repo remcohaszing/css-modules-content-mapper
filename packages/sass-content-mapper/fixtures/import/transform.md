@@ -22,7 +22,7 @@ export default styles
  */
 declare const index: string
 
-export { index as index, }
+export { index, }
 
 
 /**
@@ -34,7 +34,7 @@ export { index as index, }
  */
 declare const local: string
 
-export { local as local, }
+export { local, }
 
 
 ````
@@ -44,4 +44,4 @@ export { local as local, }
 | Original |     | Virtual |     | Definition | References |
 | -------- | --: | ------- | --: | :--------: | :--------: |
 | `local`  | 135 | `local` | 127 |      ✓     |      ✓     |
-| `local`  | 135 | `local` | 309 |      ✓     |      ✓     |
+| `local`  | 135 | `local` | 300 |      ✓     |      ✓     |

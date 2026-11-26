@@ -23,7 +23,7 @@ export default styles
  */
 declare const app: string
 
-export { app as app, }
+export { app, }
 
 
 ````

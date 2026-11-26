@@ -23,7 +23,7 @@ export default styles
  */
 declare const warning: string
 
-export { warning as warning, }
+export { warning, }
 
 
 ````

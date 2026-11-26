@@ -111,7 +111,7 @@ export { $3 as "column-2", }
  */
 declare const a: string
 
-export { a as a, }
+export { a, }
 
 
 ````

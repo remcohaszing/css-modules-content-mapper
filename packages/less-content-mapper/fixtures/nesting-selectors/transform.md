@@ -326,7 +326,7 @@ export default styles
  */
 declare const a: string
 
-export { a as a, }
+export { a, }
 
 
 /**
@@ -338,7 +338,7 @@ export { a as a, }
  */
 declare const b: string
 
-export { b as b, }
+export { b, }
 
 
 /**
@@ -350,7 +350,7 @@ export { b as b, }
  */
 declare const c: string
 
-export { c as c, }
+export { c, }
 
 
 /**
@@ -375,7 +375,7 @@ export { $0 as "b-d", }
  */
 declare const e: string
 
-export { e as e, }
+export { e, }
 
 
 /**
@@ -388,7 +388,7 @@ export { e as e, }
  */
 declare const f: string
 
-export { f as f, }
+export { f, }
 
 
 /**
@@ -400,7 +400,7 @@ export { f as f, }
  */
 declare const g: string
 
-export { g as g, }
+export { g, }
 
 
 /**
@@ -412,7 +412,7 @@ export { g as g, }
  */
 declare const h: string
 
-export { h as h, }
+export { h, }
 
 
 /**
@@ -424,7 +424,7 @@ export { h as h, }
  */
 declare const i: string
 
-export { i as i, }
+export { i, }
 
 
 /**
@@ -436,7 +436,7 @@ export { i as i, }
  */
 declare const j: string
 
-export { j as j, }
+export { j, }
 
 
 /**
@@ -448,7 +448,7 @@ export { j as j, }
  */
 declare const k: string
 
-export { k as k, }
+export { k, }
 
 
 /**
@@ -460,7 +460,7 @@ export { k as k, }
  */
 declare const m: string
 
-export { m as m, }
+export { m, }
 
 
 /**
@@ -472,7 +472,7 @@ export { m as m, }
  */
 declare const l: string
 
-export { l as l, }
+export { l, }
 
 
 /**
@@ -514,7 +514,7 @@ export { l as l, }
  */
 declare const p: string
 
-export { p as p, }
+export { p, }
 
 
 /**
@@ -526,7 +526,7 @@ export { p as p, }
  */
 declare const q: string
 
-export { q as q, }
+export { q, }
 
 
 /**
@@ -558,7 +558,7 @@ export { q as q, }
  */
 declare const r: string
 
-export { r as r, }
+export { r, }
 
 
 /**
@@ -570,7 +570,7 @@ export { r as r, }
  */
 declare const s: string
 
-export { s as s, }
+export { s, }
 
 
 /**
@@ -582,7 +582,7 @@ export { s as s, }
  */
 declare const t: string
 
-export { t as t, }
+export { t, }
 
 
 /**
@@ -594,7 +594,7 @@ export { t as t, }
  */
 declare const u: string
 
-export { u as u, }
+export { u, }
 
 
 /**
@@ -606,7 +606,7 @@ export { u as u, }
  */
 declare const v: string
 
-export { v as v, }
+export { v, }
 
 
 /**
@@ -630,7 +630,7 @@ export { $1 as "var-n", }
  */
 declare const o: string
 
-export { o as o, }
+export { o, }
 
 
 ````
@@ -662,24 +662,24 @@ export { o as o, }
 | `o`      | 673 | `"var-n"` | 2826 |      ✓     |      ✓     |
 | `o`      | 673 | `o`       | 2914 |      ✓     |      ✓     |
 | `a`      |   1 | `a`       | 3390 |      ✓     |      ✓     |
-| `b`      |   8 | `b`       | 3504 |      ✓     |      ✓     |
-| `c`      |  17 | `c`       | 3618 |      ✓     |      ✓     |
-| `&-d`    |  50 | `$0`      | 3733 |      ✓     |      ✓     |
-| `e`      |  88 | `e`       | 3856 |      ✓     |      ✓     |
-| `f`      |  94 | `f`       | 3973 |      ✓     |      ✓     |
-| `g`      | 124 | `g`       | 4083 |      ✓     |      ✓     |
-| `h`      | 152 | `h`       | 4193 |      ✓     |      ✓     |
-| `i`      | 190 | `i`       | 4309 |      ✓     |      ✓     |
-| `j`      | 237 | `j`       | 4423 |      ✓     |      ✓     |
-| `k`      | 273 | `k`       | 4531 |      ✓     |      ✓     |
-| `m`      | 284 | `m`       | 4639 |      ✓     |      ✓     |
-| `l`      | 277 | `l`       | 4747 |      ✓     |      ✓     |
-| `p`      | 312 | `p`       | 5229 |      ✓     |      ✓     |
-| `q`      | 353 | `q`       | 5338 |      ✓     |      ✓     |
-| `r`      | 381 | `r`       | 5706 |      ✓     |      ✓     |
-| `s`      | 391 | `s`       | 5821 |      ✓     |      ✓     |
-| `t`      | 466 | `t`       | 5937 |      ✓     |      ✓     |
-| `u`      | 504 | `u`       | 6055 |      ✓     |      ✓     |
-| `v`      | 538 | `v`       | 6171 |      ✓     |      ✓     |
-| `o`      | 673 | `$1`      | 6279 |      ✓     |      ✓     |
-| `o`      | 673 | `o`       | 6395 |      ✓     |      ✓     |
+| `b`      |   8 | `b`       | 3499 |      ✓     |      ✓     |
+| `c`      |  17 | `c`       | 3608 |      ✓     |      ✓     |
+| `&-d`    |  50 | `$0`      | 3718 |      ✓     |      ✓     |
+| `e`      |  88 | `e`       | 3841 |      ✓     |      ✓     |
+| `f`      |  94 | `f`       | 3953 |      ✓     |      ✓     |
+| `g`      | 124 | `g`       | 4058 |      ✓     |      ✓     |
+| `h`      | 152 | `h`       | 4163 |      ✓     |      ✓     |
+| `i`      | 190 | `i`       | 4274 |      ✓     |      ✓     |
+| `j`      | 237 | `j`       | 4383 |      ✓     |      ✓     |
+| `k`      | 273 | `k`       | 4486 |      ✓     |      ✓     |
+| `m`      | 284 | `m`       | 4589 |      ✓     |      ✓     |
+| `l`      | 277 | `l`       | 4692 |      ✓     |      ✓     |
+| `p`      | 312 | `p`       | 5169 |      ✓     |      ✓     |
+| `q`      | 353 | `q`       | 5273 |      ✓     |      ✓     |
+| `r`      | 381 | `r`       | 5636 |      ✓     |      ✓     |
+| `s`      | 391 | `s`       | 5746 |      ✓     |      ✓     |
+| `t`      | 466 | `t`       | 5857 |      ✓     |      ✓     |
+| `u`      | 504 | `u`       | 5970 |      ✓     |      ✓     |
+| `v`      | 538 | `v`       | 6081 |      ✓     |      ✓     |
+| `o`      | 673 | `$1`      | 6184 |      ✓     |      ✓     |
+| `o`      | 673 | `o`       | 6300 |      ✓     |      ✓     |

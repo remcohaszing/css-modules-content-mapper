@@ -37,7 +37,7 @@ export default styles
  */
 declare const icon: string
 
-export { icon as icon, }
+export { icon, }
 
 
 /**
@@ -48,7 +48,7 @@ export { icon as icon, }
  */
 declare const parent: string
 
-export { parent as parent, }
+export { parent, }
 
 
 /**
@@ -59,7 +59,7 @@ export { parent as parent, }
  */
 declare const child: string
 
-export { child as child, }
+export { child, }
 
 
 ````
@@ -72,5 +72,5 @@ export { child as child, }
 | `parent` | 40 | `parent` | 182 |      ✓     |      ✓     |
 | `child`  | 50 | `child`  | 263 |      ✓     |      ✓     |
 | `icon`   |  1 | `icon`   | 387 |      ✓     |      ✓     |
-| `parent` | 40 | `parent` | 498 |      ✓     |      ✓     |
-| `child`  | 50 | `child`  | 615 |      ✓     |      ✓     |
+| `parent` | 40 | `parent` | 490 |      ✓     |      ✓     |
+| `child`  | 50 | `child`  | 597 |      ✓     |      ✓     |

@@ -23,7 +23,7 @@ export default styles
  */
 declare const red: string
 
-export { red as red, }
+export { red, }
 
 
 ````

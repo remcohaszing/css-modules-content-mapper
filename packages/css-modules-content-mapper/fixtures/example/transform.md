@@ -88,7 +88,7 @@ export default styles
  */
 declare const id: string
 
-export { id as id, }
+export { id, }
 
 
 /**
@@ -113,7 +113,7 @@ export { id as id, }
  */
 declare const cls: string
 
-export { cls as cls, }
+export { cls, }
 
 
 /**
@@ -125,7 +125,7 @@ export { cls as cls, }
  */
 declare const nested: string
 
-export { nested as nested, }
+export { nested, }
 
 
 /**
@@ -184,8 +184,8 @@ export { $2 as "🦉", }
 | `🐈`                    | 298 | `"🐈"`                    |  727 |      ✓     |      ✓     |
 | `🦉`                    | 309 | `"🦉"`                    |  832 |      ✓     |      ✓     |
 | `id`                    |   1 | `id`                      |  948 |      ✓     |      ✓     |
-| `cls`                   |  47 | `cls`                     | 1200 |      ✓     |      ✓     |
-| `nested`                |  86 | `nested`                  | 1326 |      ✓     |      ✓     |
-| `hyphenated-class-name` | 194 | `$0`                      | 1549 |      ✓     |      ✓     |
-| `🐈`                    | 298 | `$1`                      | 1701 |      ✓     |      ✓     |
-| `🦉`                    | 309 | `$2`                      | 1834 |      ✓     |      ✓     |
+| `cls`                   |  47 | `cls`                     | 1194 |      ✓     |      ✓     |
+| `nested`                |  86 | `nested`                  | 1313 |      ✓     |      ✓     |
+| `hyphenated-class-name` | 194 | `$0`                      | 1526 |      ✓     |      ✓     |
+| `🐈`                    | 298 | `$1`                      | 1678 |      ✓     |      ✓     |
+| `🦉`                    | 309 | `$2`                      | 1811 |      ✓     |      ✓     |

@@ -23,7 +23,7 @@ export default styles
  */
 declare const doc: string
 
-export { doc as doc, }
+export { doc, }
 
 
 ````

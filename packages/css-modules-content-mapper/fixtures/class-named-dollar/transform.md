@@ -44,7 +44,7 @@ export { $1 as "a-b", }
  */
 declare const $0: string
 
-export { $0 as $0, }
+export { $0, }
 
 
 ````

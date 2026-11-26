@@ -57,7 +57,7 @@ export default styles
  */
 declare const block: string
 
-export { block as block, }
+export { block, }
 
 
 /**
@@ -69,7 +69,7 @@ export { block as block, }
  */
 declare const block__element: string
 
-export { block__element as block__element, }
+export { block__element, }
 
 
 /**
@@ -94,5 +94,5 @@ export { $0 as "block--modifier", }
 | `&__element`  | 30 | `block__element`    | 293 |      ✓     |      ✓     |
 | `&--modifier` | 68 | `"block--modifier"` | 398 |      ✓     |      ✓     |
 | `block`       |  1 | `block`             | 628 |      ✓     |      ✓     |
-| `&__element`  | 30 | `block__element`    | 758 |      ✓     |      ✓     |
-| `&--modifier` | 68 | `$0`                | 915 |      ✓     |      ✓     |
+| `&__element`  | 30 | `block__element`    | 749 |      ✓     |      ✓     |
+| `&--modifier` | 68 | `$0`                | 888 |      ✓     |      ✓     |

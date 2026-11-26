@@ -49,7 +49,7 @@ export default styles
  */
 declare const a: string
 
-export { a as a, }
+export { a, }
 
 
 /**
@@ -60,7 +60,7 @@ export { a as a, }
  */
 declare const b: string
 
-export { b as b, }
+export { b, }
 
 
 /**
@@ -84,5 +84,5 @@ export { $0 as "a--c", }
 | `b`      | 24 | `b`      | 224 |      ✓     |      ✓     |
 | `&--c`   | 46 | `"a--c"` | 299 |      ✓     |      ✓     |
 | `a`      |  1 | `a`      | 471 |      ✓     |      ✓     |
-| `b`      | 24 | `b`      | 571 |      ✓     |      ✓     |
-| `&--c`   | 46 | `$0`     | 672 |      ✓     |      ✓     |
+| `b`      | 24 | `b`      | 566 |      ✓     |      ✓     |
+| `&--c`   | 46 | `$0`     | 662 |      ✓     |      ✓     |

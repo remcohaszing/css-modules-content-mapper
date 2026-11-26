@@ -51,7 +51,7 @@ export default styles
  */
 declare const a: string
 
-export { a as a, }
+export { a, }
 
 
 /**
@@ -64,7 +64,7 @@ export { a as a, }
  */
 declare const c: string
 
-export { c as c, }
+export { c, }
 
 
 /**
@@ -76,7 +76,7 @@ export { c as c, }
  */
 declare const parent: string
 
-export { parent as parent, }
+export { parent, }
 
 
 /**
@@ -88,7 +88,7 @@ export { parent as parent, }
  */
 declare const child: string
 
-export { child as child, }
+export { child, }
 
 
 ````
@@ -102,6 +102,6 @@ export { child as child, }
 | `parent` | 210 | `parent` | 261 |      ✓     |      ✓     |
 | `child`  | 177 | `child`  | 353 |      ✓     |      ✓     |
 | `a`      |  88 | `a`      | 467 |      ✓     |      ✓     |
-| `c`      | 140 | `c`      | 574 |      ✓     |      ✓     |
-| `parent` | 210 | `parent` | 687 |      ✓     |      ✓     |
-| `child`  | 177 | `child`  | 815 |      ✓     |      ✓     |
+| `c`      | 140 | `c`      | 569 |      ✓     |      ✓     |
+| `parent` | 210 | `parent` | 677 |      ✓     |      ✓     |
+| `child`  | 177 | `child`  | 795 |      ✓     |      ✓     |

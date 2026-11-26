@@ -23,7 +23,7 @@ export default styles
  */
 declare const local: string
 
-export { local as local, }
+export { local, }
 
 
 ````

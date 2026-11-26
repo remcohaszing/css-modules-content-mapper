@@ -62,7 +62,7 @@ export default styles
  */
 declare const a: string
 
-export { a as a, }
+export { a, }
 
 
 /**
@@ -73,7 +73,7 @@ export { a as a, }
  */
 declare const c: string
 
-export { c as c, }
+export { c, }
 
 
 /**
@@ -84,7 +84,7 @@ export { c as c, }
  */
 declare const d: string
 
-export { d as d, }
+export { d, }
 
 
 /**
@@ -95,7 +95,7 @@ export { d as d, }
  */
 declare const f: string
 
-export { f as f, }
+export { f, }
 
 
 /**
@@ -106,7 +106,7 @@ export { f as f, }
  */
 declare const h: string
 
-export { h as h, }
+export { h, }
 
 
 /**
@@ -118,7 +118,7 @@ export { h as h, }
  */
 declare const m: string
 
-export { m as m, }
+export { m, }
 
 
 ````
@@ -134,8 +134,8 @@ export { m as m, }
 | `h`      |  70 | `h`     |  393 |      ✓     |      ✓     |
 | `m`      | 134 | `m`     |  467 |      ✓     |      ✓     |
 | `a`      |   1 | `a`     |  570 |      ✓     |      ✓     |
-| `c`      |  16 | `c`     |  669 |      ✓     |      ✓     |
-| `d`      |  24 | `d`     |  774 |      ✓     |      ✓     |
-| `f`      |  45 | `f`     |  879 |      ✓     |      ✓     |
-| `h`      |  70 | `h`     |  981 |      ✓     |      ✓     |
-| `m`      | 134 | `m`     | 1081 |      ✓     |      ✓     |
+| `c`      |  16 | `c`     |  664 |      ✓     |      ✓     |
+| `d`      |  24 | `d`     |  764 |      ✓     |      ✓     |
+| `f`      |  45 | `f`     |  864 |      ✓     |      ✓     |
+| `h`      |  70 | `h`     |  961 |      ✓     |      ✓     |
+| `m`      | 134 | `m`     | 1056 |      ✓     |      ✓     |

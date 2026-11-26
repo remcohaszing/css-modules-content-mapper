@@ -31,21 +31,21 @@ export default styles
  */
 declare const local: string
 
-export { local as local, }
+export { local, }
 
 
 /**
  */
 declare const parent: string
 
-export { parent as parent, }
+export { parent, }
 
 
 /**
  */
 declare const child: string
 
-export { child as child, }
+export { child, }
 
 
 ````
@@ -57,4 +57,4 @@ export { child as child, }
 | `local`  |  17 | `local`  | 102 |      ✓     |      ✓     |
 | `parent` | 116 | `parent` | 134 |      ✓     |      ✓     |
 | `local`  |  17 | `local`  | 290 |      ✓     |      ✓     |
-| `parent` | 116 | `parent` | 356 |      ✓     |      ✓     |
+| `parent` | 116 | `parent` | 347 |      ✓     |      ✓     |
